@@ -43,7 +43,8 @@
     </properties>
 
     <modules>
-       
+        <module>microsphere-java-enterprise-parent</module>
+        <module>microsphere-interceptor</module>
     </modules>
 
 </project>
