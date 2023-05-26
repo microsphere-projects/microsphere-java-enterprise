@@ -58,6 +58,7 @@ public class SpringCacheAdapter implements Cache {
     @Override
     public <T> T get(Object key, Class<T> type) {
         Object value = cache.get(key);
+        // TODO Refactor here using Spring ConversionService API
         return convertIfPossible(value, type);
     }
 
