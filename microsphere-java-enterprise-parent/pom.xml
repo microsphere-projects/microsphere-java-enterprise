@@ -33,6 +33,7 @@
         <microsphere.version>${revision}</microsphere.version>
 
         <!-- Third Parties -->
+        <spring-framework.version>5.3.27</spring-framework.version>
         <cglib.version>3.3.0</cglib.version>
         <glassfish-el.version>3.0.1-b08</glassfish-el.version>
         <jackson.version>2.9.5</jackson.version>
@@ -54,6 +55,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Framewor Dependencies -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- Microsphere Dependencies -->
             <dependency>

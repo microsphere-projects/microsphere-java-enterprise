@@ -45,6 +45,7 @@
     <modules>
         <module>microsphere-java-enterprise-parent</module>
         <module>microsphere-interceptor</module>
+        <module>microsphere-cache</module>
     </modules>
 
 </project>

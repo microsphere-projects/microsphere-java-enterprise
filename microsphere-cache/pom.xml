@@ -11,9 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.microsphere-projects</groupId>
-    <artifactId>microsphere-interceptor</artifactId>
-    <name>Microsphere Projects :: Java EE Interceptor</name>
-    <description>Microsphere Java EE Interceptor Project</description>
+    <artifactId>microsphere-cache</artifactId>
+    <name>Microsphere Projects :: Java EE Cache</name>
+    <description>Microsphere Java EE Cache Project</description>
 
     <dependencies>
 
@@ -24,17 +24,10 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Interceptor API -->
+        <!-- Java Cache -->
         <dependency>
-            <groupId>javax.interceptor</groupId>
-            <artifactId>javax.interceptor-api</artifactId>
-        </dependency>
-
-        <!-- Java CDI API -->
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <optional>true</optional>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
         </dependency>
 
         <!-- Microsphere Core -->
@@ -43,10 +36,36 @@
             <artifactId>microsphere-core</artifactId>
         </dependency>
 
-        <!-- CGLIB -->
+        <!-- Microsphere Interceptor -->
         <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
+            <groupId>io.github.microsphere-projects</groupId>
+            <artifactId>microsphere-interceptor</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Testing -->
@@ -55,6 +74,7 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
 
     </dependencies>
 
