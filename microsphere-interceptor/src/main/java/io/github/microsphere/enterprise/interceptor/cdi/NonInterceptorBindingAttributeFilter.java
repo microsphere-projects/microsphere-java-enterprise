@@ -17,12 +17,12 @@
 package io.github.microsphere.enterprise.interceptor.cdi;
 
 import io.github.microsphere.enterprise.interceptor.InterceptorBindingAttributeFilter;
-import io.github.microsphere.util.ClassLoaderUtils;
 
 import javax.enterprise.util.Nonbinding;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import static io.github.microsphere.util.ClassLoaderUtils.getClassLoader;
 import static io.github.microsphere.util.ClassLoaderUtils.isPresent;
 import static io.github.microsphere.util.ClassLoaderUtils.resolveClass;
 
@@ -36,7 +36,7 @@ public class NonInterceptorBindingAttributeFilter implements InterceptorBindingA
 
     private static final String NON_BINDING_ANNOTATION_CLASS_NAME = "javax.enterprise.util.Nonbinding";
 
-    private static final ClassLoader classLoader = ClassLoaderUtils.getCallerClassLoader();
+    private static final ClassLoader classLoader = getClassLoader(NonInterceptorBindingAttributeFilter.class);
 
     private static final boolean NON_BINDING_ANNOTATION_ABSENT = isPresent(NON_BINDING_ANNOTATION_CLASS_NAME, classLoader);
 

@@ -18,8 +18,7 @@ package io.github.microsphere.enterprise.interceptor;
 
 import io.github.microsphere.enterprise.interceptor.cglib.CglibComponentEnhancer;
 import io.github.microsphere.enterprise.interceptor.jdk.DynamicProxyComponentEnhancer;
-
-import static io.github.microsphere.util.ClassLoaderUtils.getClassLoader;
+import io.github.microsphere.util.ClassLoaderUtils;
 
 /**
  * Default {@link ComponentEnhancer}
@@ -38,7 +37,7 @@ public class DefaultComponentEnhancer implements ComponentEnhancer {
     public DefaultComponentEnhancer() {
         this.jdkProxyInterceptorEnhancer = new DynamicProxyComponentEnhancer();
         this.cglibInterceptorEnhancer = new CglibComponentEnhancer();
-        this.interceptorManager = InterceptorManager.getInstance(getClassLoader());
+        this.interceptorManager = InterceptorManager.getInstance(ClassLoaderUtils.getDefaultClassLoader());
         this.interceptorManager.registerDiscoveredInterceptors();
     }
 

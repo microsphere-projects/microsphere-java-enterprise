@@ -17,6 +17,7 @@
 package io.github.microsphere.enterprise.interceptor;
 
 import io.github.microsphere.enterprise.interceptor.util.InterceptorUtils;
+import io.github.microsphere.util.ClassLoaderUtils;
 import io.github.microsphere.util.ServiceLoaderUtils;
 
 import javax.annotation.Priority;
@@ -28,7 +29,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 
-import static io.github.microsphere.util.ClassLoaderUtils.getClassLoader;
 import static io.github.microsphere.util.ServiceLoaderUtils.loadFirstService;
 import static java.util.Arrays.asList;
 
@@ -227,10 +227,10 @@ public interface InterceptorManager {
     }
 
     static InterceptorManager getInstance(ClassLoader classLoader) {
-        return loadFirstService(classLoader, InterceptorManager.class);
+        return loadFirstService(InterceptorManager.class, classLoader);
     }
 
     static InterceptorManager getInstance() {
-        return getInstance(getClassLoader());
+        return getInstance(ClassLoaderUtils.getDefaultClassLoader());
     }
 }

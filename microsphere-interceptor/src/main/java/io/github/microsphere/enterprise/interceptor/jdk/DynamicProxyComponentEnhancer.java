@@ -31,7 +31,7 @@ public class DynamicProxyComponentEnhancer implements ComponentEnhancer {
 
     @Override
     public <T> T enhance(T source, Class<? super T> componentClass, Object... defaultInterceptors) {
-        ClassLoader classLoader = ClassLoaderUtils.getClassLoader();
+        ClassLoader classLoader = ClassLoaderUtils.getDefaultClassLoader();
         return (T) newProxyInstance(classLoader, new Class[]{componentClass}, new InvocationHandlerAdapter(source, defaultInterceptors));
     }
 }

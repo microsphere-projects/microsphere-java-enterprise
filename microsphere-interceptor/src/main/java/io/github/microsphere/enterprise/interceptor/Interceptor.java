@@ -38,7 +38,7 @@ public interface Interceptor {
      */
     static Interceptor[] loadInterceptors() {
         Class<Interceptor> interceptorClass = Interceptor.class;
-        Interceptor[] interceptors = loadServices(interceptorClass.getClassLoader(), interceptorClass);
+        Interceptor[] interceptors = loadServices(interceptorClass, interceptorClass.getClassLoader());
         Arrays.sort(interceptors, Prioritized.COMPARATOR);
         return interceptors;
     }

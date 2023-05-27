@@ -16,9 +16,9 @@
  */
 package io.github.microsphere.enterprise.interceptor;
 
+import io.github.microsphere.collection.SetUtils;
 import org.junit.Test;
 
-import static io.github.microsphere.util.CollectionUtils.ofSet;
 import static org.junit.Assert.assertEquals;
 
 
@@ -39,6 +39,6 @@ public class DefaultComponentEnhancerTest {
         echoService = interceptorEnhancer.enhance(echoService, interceptor);
         echoService.init();
         echoService.echo("Hello,World");
-        assertEquals(ofSet("init", "echo"), interceptor.getMethodNames());
+        assertEquals(SetUtils.of("init", "echo"), interceptor.getMethodNames());
     }
 }

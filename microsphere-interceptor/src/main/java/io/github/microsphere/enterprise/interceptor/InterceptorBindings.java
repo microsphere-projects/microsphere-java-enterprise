@@ -24,7 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static io.github.microsphere.util.CollectionUtils.ofSet;
+import static io.github.microsphere.collection.SetUtils.of;
 
 /**
  * The composite {@link InterceptorBindingInfo} instance
@@ -50,7 +50,7 @@ public class InterceptorBindings implements Iterable<InterceptorBindingInfo> {
     private final Set<Class<? extends Annotation>> interceptorBindingTypes;
 
     public InterceptorBindings(Collection<Annotation> interceptorBindings) {
-        this(ofSet(interceptorBindings));
+        this(of(interceptorBindings));
     }
 
     public InterceptorBindings(Set<Annotation> interceptorBindings) {
@@ -86,13 +86,13 @@ public class InterceptorBindings implements Iterable<InterceptorBindingInfo> {
     }
 
     private Set<InterceptorBindingInfo> asInterceptorBindings(Collection<Annotation> interceptorBindings) {
-        return ofSet(sortedStream(interceptorBindings)
+        return of(sortedStream(interceptorBindings)
                 .map(InterceptorBindingInfo::new)
                 .collect(Collectors.toList()));
     }
 
     private Set<Class<? extends Annotation>> asInterceptorBindingTypes(Collection<Annotation> interceptorBindings) {
-        return ofSet(sortedStream(interceptorBindings)
+        return of(sortedStream(interceptorBindings)
                 .map(Annotation::annotationType)
                 .collect(Collectors.toList()));
     }
