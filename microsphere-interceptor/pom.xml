@@ -12,6 +12,8 @@
 
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-interceptor</artifactId>
+    <packaging>jar</packaging>
+
     <name>Microsphere Projects :: Java EE Interceptor</name>
     <description>Microsphere Java EE Interceptor Project</description>
 

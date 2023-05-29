@@ -12,6 +12,8 @@
 
     <groupId>io.github.microsphere-projects</groupId>
     <artifactId>microsphere-cache</artifactId>
+    <packaging>jar</packaging>
+
     <name>Microsphere Projects :: Java EE Cache</name>
     <description>Microsphere Java EE Cache Project</description>
 

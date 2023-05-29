@@ -24,7 +24,7 @@
         <javax.inject.version>1</javax.inject.version>
         <javax.cache-api.version>1.1.1</javax.cache-api.version>
         <javax.interceptor-api.version>1.2</javax.interceptor-api.version>
-        <javax.cdi-api.version>2.0</javax.cdi-api.version>
+        <javax.cdi-api.version>2.0.SP1</javax.cdi-api.version>
         <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
         <jstl.version>1.2</jstl.version>
         <javax.mail.version>1.4.7</javax.mail.version>
