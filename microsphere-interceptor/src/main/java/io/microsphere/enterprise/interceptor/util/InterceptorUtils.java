@@ -16,7 +16,7 @@
  */
 package io.microsphere.enterprise.interceptor.util;
 
-import io.microsphere.lang.Prioritized;
+import io.microsphere.util.PriorityComparator;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -75,7 +75,7 @@ public abstract class InterceptorUtils {
 
     public static <T> List<T> sortInterceptors(List<T> interceptors) {
         List<T> sortedInterceptors = new LinkedList<>(interceptors);
-        sortedInterceptors.sort(Prioritized.COMPARATOR);
+        sortedInterceptors.sort(PriorityComparator.INSTANCE);
         return sortedInterceptors;
     }
 

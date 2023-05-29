@@ -227,7 +227,7 @@ public interface InterceptorManager {
     }
 
     static InterceptorManager getInstance(ClassLoader classLoader) {
-        return loadFirstService(InterceptorManager.class, classLoader);
+        return loadFirstService(InterceptorManager.class, classLoader, true);
     }
 
     static InterceptorManager getInstance() {
