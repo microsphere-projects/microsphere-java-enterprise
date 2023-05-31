@@ -20,8 +20,8 @@ import javax.enterprise.context.spi.Context;
 import javax.enterprise.context.spi.Contextual;
 import java.lang.reflect.Type;
 
-import static org.geektimes.commons.reflect.util.TypeUtils.findActualTypeArgumentClass;
-import static org.geektimes.commons.reflect.util.TypeUtils.findActualTypeArguments;
+import static io.microsphere.reflect.TypeUtils.findActualTypeArgumentClass;
+import static io.microsphere.reflect.TypeUtils.findActualTypeArguments;
 
 /**
  * The utilities class for {@link Context}

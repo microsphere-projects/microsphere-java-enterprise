@@ -31,8 +31,8 @@ import javax.interceptor.InvocationContext;
 import java.lang.annotation.Annotation;
 import java.util.Set;
 
-import static java.lang.String.format;
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
+import static java.lang.String.format;
 import static org.geektimes.interceptor.InterceptorManager.getInstance;
 
 /**

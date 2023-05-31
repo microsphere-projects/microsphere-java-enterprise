@@ -34,11 +34,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Set;
 
-import static java.lang.String.format;
-import static org.geektimes.commons.function.ThrowableAction.execute;
-import static org.geektimes.commons.reflect.util.MemberUtils.isStatic;
 import static io.microsphere.enterprise.inject.util.Injections.createMethodParameterInjectionPoint;
 import static io.microsphere.enterprise.inject.util.Qualifiers.getQualifiers;
+import static io.microsphere.lang.function.ThrowableAction.execute;
+import static io.microsphere.reflect.MemberUtils.isStatic;
+import static java.lang.String.format;
 
 /**
  * {@link ObserverMethod} based on Java Reflection.

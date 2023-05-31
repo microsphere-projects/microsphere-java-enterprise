@@ -16,7 +16,6 @@
  */
 package io.microsphere.enterprise.inject.standard.beans.manager;
 
-import org.geektimes.commons.lang.util.ClassLoaderUtils;
 import io.microsphere.enterprise.inject.standard.AnnotatedTypeInjectionTargetFactory;
 import io.microsphere.enterprise.inject.standard.ConstructorParameterInjectionPoint;
 import io.microsphere.enterprise.inject.standard.FieldInjectionPoint;
@@ -33,15 +32,26 @@ import io.microsphere.enterprise.inject.standard.beans.producer.ProducerFieldBea
 import io.microsphere.enterprise.inject.standard.beans.producer.ProducerMethodBean;
 import io.microsphere.enterprise.inject.standard.context.mananger.ContextManager;
 import io.microsphere.enterprise.inject.standard.disposer.DisposerMethodManager;
-import io.microsphere.enterprise.inject.standard.event.*;
-import io.microsphere.enterprise.inject.standard.event.application.*;
+import io.microsphere.enterprise.inject.standard.event.ProcessAnnotatedTypeEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessBeanAttributesEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessBeanEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessInjectionPointEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessInjectionTargetEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessProducerEvent;
+import io.microsphere.enterprise.inject.standard.event.ProcessSyntheticAnnotatedTypeEvent;
+import io.microsphere.enterprise.inject.standard.event.application.AfterBeanDiscoveryEvent;
+import io.microsphere.enterprise.inject.standard.event.application.AfterDeploymentValidationEvent;
+import io.microsphere.enterprise.inject.standard.event.application.AfterTypeDiscoveryEvent;
+import io.microsphere.enterprise.inject.standard.event.application.BeforeBeanDiscoveryEvent;
+import io.microsphere.enterprise.inject.standard.event.application.BeforeShutdownEvent;
 import io.microsphere.enterprise.inject.standard.observer.ObserverMethodManager;
 import io.microsphere.enterprise.inject.standard.producer.ProducerFieldBeanAttributes;
 import io.microsphere.enterprise.inject.standard.producer.ProducerFieldFactory;
 import io.microsphere.enterprise.inject.standard.producer.ProducerMethodBeanAttributes;
 import io.microsphere.enterprise.inject.standard.producer.ProducerMethodFactory;
 import io.microsphere.enterprise.inject.util.Annotations;
-import org.geektimes.interceptor.InterceptorManager;
+import io.microsphere.enterprise.interceptor.InterceptorManager;
+import io.microsphere.util.ClassLoaderUtils;
 
 import javax.el.ELResolver;
 import javax.el.ExpressionFactory;
@@ -105,12 +115,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
-import static java.lang.String.format;
-import static java.lang.System.getProperty;
-import static java.util.Collections.unmodifiableList;
-import static java.util.Objects.requireNonNull;
-import static java.util.ServiceLoader.load;
-import static org.geektimes.commons.lang.util.ArrayUtils.iterate;
 import static io.microsphere.enterprise.inject.util.Beans.isAnnotatedVetoed;
 import static io.microsphere.enterprise.inject.util.Beans.isManagedBean;
 import static io.microsphere.enterprise.inject.util.Decorators.isDecorator;
@@ -120,7 +124,13 @@ import static io.microsphere.enterprise.inject.util.Injections.getMethodParamete
 import static io.microsphere.enterprise.inject.util.Injections.validateForbiddenAnnotation;
 import static io.microsphere.enterprise.inject.util.Parameters.isConstructorParameter;
 import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter;
-import static org.geektimes.interceptor.InterceptorManager.getInstance;
+import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
+import static io.microsphere.util.ArrayUtils.iterate;
+import static java.lang.String.format;
+import static java.lang.System.getProperty;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.requireNonNull;
+import static java.util.ServiceLoader.load;
 
 /**
  * Standard {@link BeanManager}

@@ -45,18 +45,18 @@ import java.lang.reflect.WildcardType;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
+import static io.microsphere.reflect.MemberUtils.isAbstract;
+import static io.microsphere.reflect.TypeUtils.asGenericArrayType;
+import static io.microsphere.reflect.TypeUtils.asParameterizedType;
+import static io.microsphere.reflect.TypeUtils.asTypeVariable;
+import static io.microsphere.reflect.TypeUtils.asWildcardType;
+import static io.microsphere.reflect.TypeUtils.isTypeVariable;
+import static io.microsphere.reflect.TypeUtils.isWildcardType;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
-import static org.geektimes.commons.reflect.util.MemberUtils.isAbstract;
-import static org.geektimes.commons.reflect.util.TypeUtils.*;
-import static org.geektimes.commons.reflect.util.TypeUtils.asGenericArrayType;
-import static org.geektimes.commons.reflect.util.TypeUtils.asParameterizedType;
-import static org.geektimes.commons.reflect.util.TypeUtils.asTypeVariable;
-import static org.geektimes.commons.reflect.util.TypeUtils.asWildcardType;
-import static org.geektimes.commons.reflect.util.TypeUtils.isTypeVariable;
-import static org.geektimes.commons.reflect.util.TypeUtils.isWildcardType;
-import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
+
 
 /**
  * The utilities class for Producer Method or Field

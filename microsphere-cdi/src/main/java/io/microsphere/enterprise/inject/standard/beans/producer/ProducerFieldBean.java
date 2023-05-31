@@ -27,8 +27,8 @@ import javax.enterprise.inject.spi.Producer;
 import java.lang.reflect.Field;
 import java.util.Set;
 
-import static java.util.Collections.emptySet;
 import static io.microsphere.enterprise.inject.util.Producers.validateProducerField;
+import static java.util.Collections.emptySet;
 
 /**
  * Producer {@link Field} {@link Bean} based on Java Reflection

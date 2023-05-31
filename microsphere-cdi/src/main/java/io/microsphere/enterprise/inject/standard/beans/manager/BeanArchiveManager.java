@@ -16,15 +16,6 @@
  */
 package io.microsphere.enterprise.inject.standard.beans.manager;
 
-import io.microsphere.collection.SetUtils;
-import io.microsphere.enterprise.interceptor.InterceptorManager;
-import io.microsphere.io.scanner.SimpleClassScanner;
-import io.microsphere.util.PriorityComparator;
-import org.geektimes.commons.collection.util.CollectionUtils;
-import org.geektimes.commons.lang.util.ClassPathUtils;
-import org.geektimes.commons.reflect.util.ClassUtils;
-import org.geektimes.commons.reflect.util.SimpleClassScanner;
-import org.geektimes.commons.util.PriorityComparator;
 import io.microsphere.enterprise.inject.standard.beans.BeanArchiveType;
 import io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode;
 import io.microsphere.enterprise.inject.standard.beans.BeanTypeSource;
@@ -35,8 +26,12 @@ import io.microsphere.enterprise.inject.standard.beans.xml.bind.Scan;
 import io.microsphere.enterprise.inject.util.Decorators;
 import io.microsphere.enterprise.inject.util.Qualifiers;
 import io.microsphere.enterprise.inject.util.Stereotypes;
-import org.geektimes.interceptor.InterceptorManager;
-import org.geektimes.interceptor.util.InterceptorUtils;
+import io.microsphere.enterprise.interceptor.InterceptorManager;
+import io.microsphere.enterprise.interceptor.util.InterceptorUtils;
+import io.microsphere.io.scanner.SimpleClassScanner;
+import io.microsphere.util.ClassPathUtils;
+import io.microsphere.util.ClassUtils;
+import io.microsphere.util.PriorityComparator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.ConversationScoped;
@@ -67,8 +62,19 @@ import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import static io.microsphere.collection.SetUtils.newLinkedHashSet;
 import static io.microsphere.collection.SetUtils.of;
+import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.EXPLICIT;
+import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.OTHER;
+import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.ALL;
+import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.NONE;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.DISCOVERED;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.ENABLED;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.SYNTHETIC;
+import static io.microsphere.enterprise.inject.standard.beans.xml.BeansReader.BEANS_XML_RESOURCE_NAME;
 import static io.microsphere.util.ServiceLoaderUtils.loadFirstService;
+import static io.microsphere.util.StringUtils.endsWith;
+import static io.microsphere.util.StringUtils.isBlank;
 import static java.lang.String.format;
 import static java.lang.System.getProperty;
 import static java.util.Collections.emptyList;
@@ -76,20 +82,6 @@ import static java.util.Collections.emptySet;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
-import static org.geektimes.commons.collection.util.CollectionUtils.newLinkedHashSet;
-import static org.geektimes.commons.lang.util.StringUtils.endsWith;
-import static org.geektimes.commons.lang.util.StringUtils.isBlank;
-import static org.geektimes.commons.util.ServiceLoaders.loadSpi;
-import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.EXPLICIT;
-import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.OTHER;
-import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.ALL;
-import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.NONE;
-import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.*;
-import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.DISCOVERED;
-import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.ENABLED;
-import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.SYNTHETIC;
-import static io.microsphere.enterprise.inject.standard.beans.xml.BeansReader.BEANS_XML_RESOURCE_NAME;
-import static org.geektimes.interceptor.InterceptorManager.getInstance;
 
 
 /**

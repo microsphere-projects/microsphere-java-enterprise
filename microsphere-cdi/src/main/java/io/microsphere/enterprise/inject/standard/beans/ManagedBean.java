@@ -32,11 +32,11 @@ import java.lang.reflect.Type;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static java.util.Collections.unmodifiableSet;
 import static io.microsphere.enterprise.inject.util.Beans.validateManagedBeanSpecializes;
 import static io.microsphere.enterprise.inject.util.Beans.validateManagedBeanType;
 import static io.microsphere.enterprise.inject.util.Producers.resolveProducerFieldBeans;
 import static io.microsphere.enterprise.inject.util.Producers.resolveProducerMethodBeans;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Managed {@link Bean} based on Java Reflection.

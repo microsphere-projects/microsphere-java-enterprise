@@ -16,18 +16,16 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import org.geektimes.commons.collection.util.CollectionUtils;
-
 import javax.enterprise.inject.Stereotype;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static io.microsphere.collection.SetUtils.asSet;
+import static io.microsphere.util.AnnotationUtils.getAllDeclaredAnnotations;
+import static io.microsphere.util.AnnotationUtils.isMetaAnnotation;
 import static java.util.Collections.unmodifiableSet;
-import static org.geektimes.commons.collection.util.CollectionUtils.asSet;
-import static org.geektimes.commons.lang.util.AnnotationUtils.getAllDeclaredAnnotations;
-import static org.geektimes.commons.lang.util.AnnotationUtils.isMetaAnnotation;
 
 /**
  * The utilities class for {@link Stereotype}
@@ -46,7 +44,7 @@ public abstract class Stereotypes {
     }
 
     public static Set<Annotation> getAllStereotypes(AnnotatedElement annotatedElement) {
-        return CollectionUtils.asSet(getAllDeclaredAnnotations(annotatedElement, Stereotypes::isStereotype));
+        return asSet(getAllDeclaredAnnotations(annotatedElement, Stereotypes::isStereotype));
     }
 
     public static Set<Class<? extends Annotation>> getStereotypeTypes(AnnotatedElement annotatedElement) {

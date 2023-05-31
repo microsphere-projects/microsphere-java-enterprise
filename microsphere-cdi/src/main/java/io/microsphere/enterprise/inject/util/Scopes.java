@@ -16,14 +16,14 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import org.geektimes.commons.lang.util.AnnotationUtils;
+import io.microsphere.util.AnnotationUtils;
 
 import javax.enterprise.context.NormalScope;
 import javax.inject.Scope;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
-import static org.geektimes.commons.lang.util.AnnotationUtils.findAnnotation;
+import static io.microsphere.util.AnnotationUtils.findAnnotation;
 
 /**
  * The utilities class for {@link Scope}

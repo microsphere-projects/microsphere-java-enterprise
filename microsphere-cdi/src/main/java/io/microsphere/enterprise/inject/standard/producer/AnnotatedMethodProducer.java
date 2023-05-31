@@ -27,8 +27,8 @@ import javax.enterprise.inject.spi.Producer;
 import java.lang.reflect.Method;
 import java.util.Set;
 
-import static org.geektimes.commons.reflect.util.MemberUtils.isStatic;
 import static io.microsphere.enterprise.inject.util.Injections.getMethodParameterInjectionPoints;
+import static org.geektimes.commons.reflect.util.MemberUtils.isStatic;
 
 /**
  * {@link Producer} implementation for Producer {@link AnnotatedMethod Method}

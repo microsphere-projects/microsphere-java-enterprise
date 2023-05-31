@@ -16,9 +16,9 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import org.geektimes.commons.lang.util.ArrayUtils;
-import org.geektimes.commons.reflect.util.MemberUtils;
-import org.geektimes.interceptor.InterceptorManager;
+import io.microsphere.enterprise.interceptor.InterceptorManager;
+import io.microsphere.reflect.MemberUtils;
+import io.microsphere.util.ArrayUtils;
 
 import javax.decorator.Decorator;
 import javax.enterprise.context.Dependent;
@@ -38,47 +38,46 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
+import static io.microsphere.collection.SetUtils.asSet;
+import static io.microsphere.enterprise.inject.util.Decorators.isDecorator;
+import static io.microsphere.enterprise.inject.util.Qualifiers.findQualifier;
+import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
+import static io.microsphere.reflect.FieldUtils.getAllFields;
+import static io.microsphere.reflect.MemberUtils.NON_PRIVATE_METHOD_PREDICATE;
+import static io.microsphere.reflect.MemberUtils.NON_STATIC_METHOD_PREDICATE;
+import static io.microsphere.reflect.MethodUtils.getAllDeclaredMethods;
+import static io.microsphere.reflect.TypeUtils.TYPE_VARIABLE_FILTER;
+import static io.microsphere.reflect.TypeUtils.asParameterizedType;
+import static io.microsphere.reflect.TypeUtils.asTypeVariable;
+import static io.microsphere.reflect.TypeUtils.asWildcardType;
+import static io.microsphere.reflect.TypeUtils.getAllTypes;
+import static io.microsphere.reflect.TypeUtils.getComponentType;
+import static io.microsphere.reflect.TypeUtils.isClass;
+import static io.microsphere.reflect.TypeUtils.isParameterizedType;
+import static io.microsphere.reflect.TypeUtils.isTypeVariable;
+import static io.microsphere.reflect.TypeUtils.isWildcardType;
+import static io.microsphere.util.AnnotationUtils.findAnnotation;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
+import static io.microsphere.util.ClassUtils.arrayTypeEquals;
+import static io.microsphere.util.ClassUtils.isArray;
+import static io.microsphere.util.ClassUtils.isAssignableFrom;
+import static io.microsphere.util.ClassUtils.isConcreteClass;
+import static io.microsphere.util.ClassUtils.isFinal;
+import static io.microsphere.util.ClassUtils.isGenericClass;
+import static io.microsphere.util.ClassUtils.isPrimitive;
+import static io.microsphere.util.ClassUtils.isTopLevelClass;
+import static io.microsphere.util.ClassUtils.resolveWrapperType;
 import static java.beans.Introspector.decapitalize;
 import static java.lang.Integer.compare;
 import static java.lang.String.format;
 import static java.util.stream.Stream.of;
-import static org.geektimes.commons.collection.util.CollectionUtils.asSet;
-import static org.geektimes.commons.lang.util.AnnotationUtils.findAnnotation;
-import static org.geektimes.commons.lang.util.AnnotationUtils.isAnnotationPresent;
-import static org.geektimes.commons.reflect.util.ClassUtils.*;
-import static org.geektimes.commons.reflect.util.ClassUtils.arrayTypeEquals;
-import static org.geektimes.commons.reflect.util.ClassUtils.isArray;
-import static org.geektimes.commons.reflect.util.ClassUtils.isAssignableFrom;
-import static org.geektimes.commons.reflect.util.ClassUtils.isConcreteClass;
-import static org.geektimes.commons.reflect.util.ClassUtils.isFinal;
-import static org.geektimes.commons.reflect.util.ClassUtils.isGenericClass;
-import static org.geektimes.commons.reflect.util.ClassUtils.isPrimitive;
-import static org.geektimes.commons.reflect.util.ClassUtils.isTopLevelClass;
-import static org.geektimes.commons.reflect.util.ClassUtils.resolveWrapperType;
-import static org.geektimes.commons.reflect.util.FieldUtils.getAllFields;
-import static org.geektimes.commons.reflect.util.MemberUtils.NON_PRIVATE_METHOD_PREDICATE;
-import static org.geektimes.commons.reflect.util.MemberUtils.NON_STATIC_METHOD_PREDICATE;
-import static org.geektimes.commons.reflect.util.MethodUtils.getAllDeclaredMethods;
-import static org.geektimes.commons.reflect.util.TypeUtils.*;
-import static org.geektimes.commons.reflect.util.TypeUtils.TYPE_VARIABLE_FILTER;
-import static org.geektimes.commons.reflect.util.TypeUtils.asParameterizedType;
-import static org.geektimes.commons.reflect.util.TypeUtils.asTypeVariable;
-import static org.geektimes.commons.reflect.util.TypeUtils.asWildcardType;
-import static org.geektimes.commons.reflect.util.TypeUtils.getAllTypes;
-import static org.geektimes.commons.reflect.util.TypeUtils.getComponentType;
-import static org.geektimes.commons.reflect.util.TypeUtils.isClass;
-import static org.geektimes.commons.reflect.util.TypeUtils.isParameterizedType;
-import static org.geektimes.commons.reflect.util.TypeUtils.isTypeVariable;
-import static org.geektimes.commons.reflect.util.TypeUtils.isWildcardType;
-import static io.microsphere.enterprise.inject.util.Decorators.isDecorator;
-import static io.microsphere.enterprise.inject.util.Qualifiers.findQualifier;
-import static org.geektimes.interceptor.InterceptorManager.getInstance;
 
 /**
  * Bean Utilities class
@@ -265,7 +264,7 @@ public abstract class Beans {
     }
 
     private static boolean hasFinalMethod(Class<?> beanClass) {
-        Set<Method> methods = getAllDeclaredMethods(beanClass, NON_STATIC_METHOD_PREDICATE, NON_PRIVATE_METHOD_PREDICATE);
+        List<Method> methods = getAllDeclaredMethods(beanClass, NON_STATIC_METHOD_PREDICATE, NON_PRIVATE_METHOD_PREDICATE);
         boolean hasFinalMethod = false;
         for (Method method : methods) {
             hasFinalMethod = MemberUtils.isFinal(method);

@@ -20,8 +20,8 @@ import javax.enterprise.inject.spi.BeforeBeanDiscovery;
 import javax.enterprise.inject.spi.Extension;
 import java.util.EventObject;
 
-import static java.lang.String.format;
 import static io.microsphere.enterprise.inject.standard.observer.ReflectiveObserverMethod.getBeanInstance;
+import static java.lang.String.format;
 
 /**
  * Container Event

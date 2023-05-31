@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.geektimes.commons.function.ThrowableAction.execute;
 import static io.microsphere.enterprise.inject.util.Beans.getBeanTypes;
+import static io.microsphere.lang.function.ThrowableAction.execute;
 
 /**
  * Disposer {@link Method} Mananger

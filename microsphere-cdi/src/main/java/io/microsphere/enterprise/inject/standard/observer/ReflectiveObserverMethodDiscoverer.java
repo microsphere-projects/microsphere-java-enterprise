@@ -22,9 +22,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static io.microsphere.enterprise.inject.util.Events.validateObserverMethod;
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Stream.of;
-import static io.microsphere.enterprise.inject.util.Events.validateObserverMethod;
 
 /**
  * {@link ObserverMethodDiscoverer} Implementation based on Java Reflection.

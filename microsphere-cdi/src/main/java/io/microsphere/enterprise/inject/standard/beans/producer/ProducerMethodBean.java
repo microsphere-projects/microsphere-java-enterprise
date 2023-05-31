@@ -32,8 +32,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Collections.unmodifiableSet;
 import static io.microsphere.enterprise.inject.util.Producers.validateProducerMethod;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Producer {@link Method} {@link Bean} based on Java Reflection

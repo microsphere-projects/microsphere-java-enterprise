@@ -35,9 +35,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableMap;
-import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
 
 /**
  * The utilities class for Disposer Method

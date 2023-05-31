@@ -36,9 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.geektimes.commons.reflect.util.FieldUtils.setFieldValue;
-import static org.geektimes.commons.reflect.util.MemberUtils.isStatic;
-import static org.geektimes.commons.reflect.util.MethodUtils.invokeMethod;
+import static io.microsphere.reflect.MemberUtils.isStatic;
+import static io.microsphere.reflect.MethodUtils.invokeMethod;
 
 /**
  * {@link AnnotatedType} {@link InjectionTarget}
@@ -74,7 +73,7 @@ public class AnnotatedTypeInjectionTarget<T> implements InjectionTarget<T> {
 
     @Override
     public void dispose(T instance) {
-       // DO NOTHING
+        // DO NOTHING
     }
 
     /**
@@ -105,7 +104,6 @@ public class AnnotatedTypeInjectionTarget<T> implements InjectionTarget<T> {
     private void injectField(FieldInjectionPoint fieldInjectionPoint, T instance, CreationalContext<T> ctx) {
         Field field = fieldInjectionPoint.getMember();
         Object injectedObject = beanManager.getInjectableReference(fieldInjectionPoint, ctx);
-        setFieldValue(instance, field, injectedObject);
     }
 
     private void injectInitializerMethods(T instance, CreationalContext<T> ctx) {
@@ -183,6 +181,6 @@ public class AnnotatedTypeInjectionTarget<T> implements InjectionTarget<T> {
 
     @Override
     public Set<InjectionPoint> getInjectionPoints() {
-       return bean.getInjectionPoints();
+        return bean.getInjectionPoints();
     }
 }

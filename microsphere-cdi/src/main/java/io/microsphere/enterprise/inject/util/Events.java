@@ -35,14 +35,13 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static java.lang.String.format;
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
-import static org.geektimes.commons.lang.util.AnnotationUtils.isAnnotationPresent;
-import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.*;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.eventMetadataParameter;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.injectedParameter;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.observedParameter;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
+import static java.lang.String.format;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 
 /**
  * The utilities class for CDI Events

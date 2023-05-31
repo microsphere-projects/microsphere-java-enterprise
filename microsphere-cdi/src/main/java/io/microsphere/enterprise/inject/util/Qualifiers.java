@@ -16,7 +16,6 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import org.geektimes.commons.collection.util.CollectionUtils;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Default;
@@ -30,11 +29,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.geektimes.commons.collection.util.CollectionUtils.asSet;
-import static org.geektimes.commons.lang.util.AnnotationUtils.*;
-import static org.geektimes.commons.lang.util.AnnotationUtils.filterAnnotations;
-import static org.geektimes.commons.lang.util.AnnotationUtils.getAllDeclaredAnnotations;
-import static org.geektimes.commons.lang.util.AnnotationUtils.isAnnotationPresent;
+import static io.microsphere.collection.SetUtils.asSet;
+import static io.microsphere.util.AnnotationUtils.filterAnnotations;
+import static io.microsphere.util.AnnotationUtils.getAllDeclaredAnnotations;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 
 /**
  * The utilities class for {@link Qualifier}
@@ -63,7 +61,7 @@ public abstract class Qualifiers {
 
     public static Set<Annotation> getQualifiers(Collection<Annotation> annotations) {
         Set<Annotation> qualifiers = filterAnnotations(new LinkedHashSet<>(annotations), Qualifiers::isQualifier);
-        return CollectionUtils.asSet(qualifiers, Any.Literal.INSTANCE, Default.Literal.INSTANCE);
+        return asSet(qualifiers, Any.Literal.INSTANCE, Default.Literal.INSTANCE);
     }
 
     public static <A extends Annotation> A findQualifier(AnnotatedElement annotatedElement, Class<A> qualifierType) {

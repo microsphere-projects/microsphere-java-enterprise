@@ -17,6 +17,7 @@
 package io.microsphere.enterprise.inject.standard.annotation;
 
 
+import io.microsphere.reflect.FieldUtils;
 import org.geektimes.commons.reflect.util.FieldUtils;
 
 import javax.enterprise.inject.spi.AnnotatedConstructor;
@@ -30,13 +31,9 @@ import java.lang.reflect.Type;
 import java.util.Objects;
 import java.util.Set;
 
+import static io.microsphere.util.ClassUtils.isGeneralClass;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.unmodifiableSet;
-import static org.geektimes.commons.collection.util.CollectionUtils.newLinkedHashSet;
-import static org.geektimes.commons.function.ThrowableSupplier.execute;
-import static org.geektimes.commons.lang.util.ArrayUtils.of;
-import static org.geektimes.commons.reflect.util.ClassUtils.isGeneralClass;
-import static org.geektimes.commons.reflect.util.MethodUtils.getAllDeclaredMethods;
 
 /**
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>

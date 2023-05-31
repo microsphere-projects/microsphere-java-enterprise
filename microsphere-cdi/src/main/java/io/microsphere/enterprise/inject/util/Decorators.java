@@ -16,7 +16,7 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import org.geektimes.commons.lang.util.AnnotationUtils;
+import io.microsphere.util.AnnotationUtils;
 
 import javax.decorator.Decorator;
 import java.lang.reflect.AnnotatedElement;

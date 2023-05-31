@@ -21,7 +21,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import static org.geektimes.commons.lang.util.AnnotationUtils.getAttributeValues;
+import static io.microsphere.util.AnnotationUtils.getAttributeValues;
 
 /**
  * The utilities class for {@link Annotation}
