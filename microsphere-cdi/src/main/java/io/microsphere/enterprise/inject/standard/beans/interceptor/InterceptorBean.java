@@ -17,8 +17,8 @@
 package io.microsphere.enterprise.inject.standard.beans.interceptor;
 
 import io.microsphere.enterprise.inject.standard.beans.GenericBean;
-import org.geektimes.interceptor.InterceptorInfo;
-import org.geektimes.interceptor.InterceptorManager;
+import io.microsphere.enterprise.interceptor.InterceptorInfo;
+import io.microsphere.enterprise.interceptor.InterceptorManager;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.spi.CreationalContext;
@@ -33,7 +33,6 @@ import java.util.Set;
 
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
 import static java.lang.String.format;
-import static org.geektimes.interceptor.InterceptorManager.getInstance;
 
 /**
  * {@link Interceptor} Bean Implementation
@@ -58,7 +57,7 @@ public class InterceptorBean<T> extends GenericBean<T> implements Interceptor<T>
         super(interceptorType, beanManager);
         this.interceptorType = interceptorType;
         this.interceptorClass = interceptorType.getJavaClass();
-        this.interceptorManager = getInstance(interceptorClass.getClassLoader());
+        this.interceptorManager = InterceptorManager.getInstance(interceptorClass.getClassLoader());
         this.interceptorManager.registerInterceptorClass(interceptorClass);
         this.interceptorInfo = interceptorManager.getInterceptorInfo(interceptorClass);
         this.interceptorBindings = resolveInterceptorBindings();

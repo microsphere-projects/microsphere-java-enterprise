@@ -47,12 +47,7 @@ import java.util.Set;
 
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
 import static io.microsphere.reflect.MemberUtils.isAbstract;
-import static io.microsphere.reflect.TypeUtils.asGenericArrayType;
-import static io.microsphere.reflect.TypeUtils.asParameterizedType;
-import static io.microsphere.reflect.TypeUtils.asTypeVariable;
-import static io.microsphere.reflect.TypeUtils.asWildcardType;
-import static io.microsphere.reflect.TypeUtils.isTypeVariable;
-import static io.microsphere.reflect.TypeUtils.isWildcardType;
+import static io.microsphere.reflect.TypeUtils.*;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;

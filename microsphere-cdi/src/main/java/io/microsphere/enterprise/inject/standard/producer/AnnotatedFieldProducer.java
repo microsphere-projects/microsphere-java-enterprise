@@ -27,8 +27,8 @@ import javax.enterprise.inject.spi.Producer;
 import java.lang.reflect.Field;
 import java.util.Set;
 
+import static io.microsphere.reflect.MemberUtils.isStatic;
 import static java.util.Collections.emptySet;
-import static org.geektimes.commons.reflect.util.MemberUtils.isStatic;
 
 /**
  * {@link Producer} implementation for Producer {@link AnnotatedField Method}

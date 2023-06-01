@@ -31,8 +31,8 @@ import java.util.StringJoiner;
 import static io.microsphere.enterprise.inject.util.Beans.getBeanTypes;
 import static io.microsphere.enterprise.inject.util.Scopes.getScopeType;
 import static io.microsphere.enterprise.inject.util.Stereotypes.getStereotypeTypes;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 import static java.util.Objects.requireNonNull;
-import static org.geektimes.commons.lang.util.AnnotationUtils.isAnnotationPresent;
 
 /**
  * Abstract {@link BeanAttributes} implementation

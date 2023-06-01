@@ -28,12 +28,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
 
+import static io.microsphere.collection.SetUtils.asSet;
 import static java.util.Collections.emptySet;
-import static org.geektimes.commons.collection.util.CollectionUtils.asSet;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * {@link ManagedBean} Test
