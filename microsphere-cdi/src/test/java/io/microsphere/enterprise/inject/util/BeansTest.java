@@ -26,7 +26,6 @@ import javax.interceptor.Interceptor;
 import java.lang.reflect.Type;
 import java.util.Set;
 
-import static io.microsphere.enterprise.inject.util.Beans.*;
 import static io.microsphere.enterprise.inject.util.Beans.getBeanTypes;
 import static io.microsphere.enterprise.inject.util.Beans.matches;
 import static io.microsphere.enterprise.inject.util.Beans.validateManagedBeanType;
