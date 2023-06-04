@@ -17,8 +17,8 @@
 package io.microsphere.enterprise.inject.standard.beans.interceptor;
 
 import io.microsphere.enterprise.inject.standard.beans.GenericBean;
-import org.geektimes.interceptor.InterceptorInfo;
-import org.geektimes.interceptor.InterceptorManager;
+import io.microsphere.enterprise.interceptor.InterceptorInfo;
+import io.microsphere.enterprise.interceptor.InterceptorManager;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.spi.CreationalContext;
@@ -32,8 +32,8 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
+import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
 import static java.lang.String.format;
-import static org.geektimes.interceptor.InterceptorManager.getInstance;
 
 /**
  * {@link Interceptor} Bean Implementation

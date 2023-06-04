@@ -1,1 +1,1 @@
-org.geektimes.enterprise.inject.se.StandardContainerInitializer
+io.microsphere.enterprise.inject.se.StandardContainerInitializer

@@ -18,7 +18,6 @@ package io.microsphere.enterprise.inject.standard.annotation;
 
 
 import io.microsphere.reflect.FieldUtils;
-import org.geektimes.commons.reflect.util.FieldUtils;
 
 import javax.enterprise.inject.spi.AnnotatedConstructor;
 import javax.enterprise.inject.spi.AnnotatedField;
@@ -28,9 +27,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import static io.microsphere.collection.SetUtils.newLinkedHashSet;
+import static io.microsphere.lang.function.ThrowableSupplier.execute;
+import static io.microsphere.reflect.MethodUtils.getAllDeclaredMethods;
+import static io.microsphere.util.ArrayUtils.of;
 import static io.microsphere.util.ClassUtils.isGeneralClass;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.unmodifiableSet;
@@ -92,7 +96,7 @@ public class ReflectiveAnnotatedType<X> extends ReflectiveAnnotated<Class> imple
         }
 
         Class<?> javaClass = getJavaClass();
-        Set<Method> methods = getAllDeclaredMethods(javaClass,
+        List<Method> methods = getAllDeclaredMethods(javaClass,
                 method -> !Objects.equals(Object.class, method.getDeclaringClass()),
                 method -> isGeneralClass(method.getDeclaringClass())
         );

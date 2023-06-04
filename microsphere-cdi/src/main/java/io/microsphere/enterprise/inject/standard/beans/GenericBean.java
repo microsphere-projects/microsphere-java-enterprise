@@ -36,10 +36,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static io.microsphere.collection.SetUtils.newLinkedHashSet;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
-import static org.geektimes.commons.collection.util.CollectionUtils.newLinkedHashSet;
 
 /**
  * Generic implementation for {@link Bean Bean}, which extends {@link GenericBeanAttributes}
