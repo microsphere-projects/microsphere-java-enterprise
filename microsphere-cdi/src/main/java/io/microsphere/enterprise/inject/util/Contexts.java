@@ -23,7 +23,6 @@ import java.lang.reflect.Type;
 import static io.microsphere.reflect.TypeUtils.resolveActualTypeArgument;
 import static io.microsphere.reflect.TypeUtils.resolveActualTypeArgumentClass;
 
-
 /**
  * The utilities class for {@link Context}
  *

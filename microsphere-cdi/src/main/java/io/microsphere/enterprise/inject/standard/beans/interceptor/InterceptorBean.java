@@ -58,7 +58,7 @@ public class InterceptorBean<T> extends GenericBean<T> implements Interceptor<T>
         super(interceptorType, beanManager);
         this.interceptorType = interceptorType;
         this.interceptorClass = interceptorType.getJavaClass();
-        this.interceptorManager = getInstance(interceptorClass.getClassLoader());
+        this.interceptorManager = InterceptorManager.getInstance(interceptorClass.getClassLoader());
         this.interceptorManager.registerInterceptorClass(interceptorClass);
         this.interceptorInfo = interceptorManager.getInterceptorInfo(interceptorClass);
         this.interceptorBindings = resolveInterceptorBindings();

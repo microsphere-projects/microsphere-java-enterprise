@@ -17,6 +17,7 @@
 package io.microsphere.enterprise.inject.standard.annotation;
 
 
+import io.microsphere.lang.function.ThrowableSupplier;
 import io.microsphere.reflect.FieldUtils;
 
 import javax.enterprise.inject.spi.AnnotatedConstructor;
@@ -71,7 +72,7 @@ public class ReflectiveAnnotatedType<X> extends ReflectiveAnnotated<Class> imple
         Constructor[] constructors = javaClass.getDeclaredConstructors();
         int size = constructors.length;
         if (size < 1) {
-            constructors = of(execute(() -> javaClass.getDeclaredConstructor()));
+            constructors = of(ThrowableSupplier.execute(() -> javaClass.getDeclaredConstructor()));
         }
 
         Set<AnnotatedConstructor<X>> annotatedConstructors = newLinkedHashSet(constructors.length);
