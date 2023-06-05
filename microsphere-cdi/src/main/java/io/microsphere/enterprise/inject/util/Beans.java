@@ -49,6 +49,7 @@ import static io.microsphere.collection.SetUtils.asSet;
 import static io.microsphere.enterprise.inject.util.Decorators.isDecorator;
 import static io.microsphere.enterprise.inject.util.Qualifiers.findQualifier;
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
+import static io.microsphere.reflect.ConstructorUtils.hasNonPrivateConstructorWithoutParameters;
 import static io.microsphere.reflect.FieldUtils.getAllFields;
 import static io.microsphere.reflect.MemberUtils.NON_PRIVATE_METHOD_PREDICATE;
 import static io.microsphere.reflect.MemberUtils.NON_STATIC_METHOD_PREDICATE;
@@ -257,7 +258,7 @@ public abstract class Beans {
                 isPrimitive(beanClass) ||
                 isFinal(beanClass) ||
                 hasFinalMethod(beanClass) ||
-                hasNonDefaultConstructor(beanClass)) {
+                !hasNonPrivateConstructorWithoutParameters(beanClass)) {
             return true;
         }
         return false;
@@ -273,11 +274,6 @@ public abstract class Beans {
             }
         }
         return hasFinalMethod;
-    }
-
-    private static boolean hasNonDefaultConstructor(Class<?> beanClass) {
-        // TODO
-        return true;
     }
 
     private static boolean hasManagedBeanConstructor(Class<?> beanClass) {
