@@ -97,12 +97,12 @@ public abstract class Disposers {
                     Type parameterType = parameter.getBaseType();
 
                     if (definedDisposerMethodTypes.contains(parameterType)) {
-                        throw newDefinitionException("There are multiple disposer methods in bean type[%s] for " +
+                        throw newDefinitionException("There are multiple disposer methods in bean type[{}] for " +
                                 "a single producer method or producer field!", managedBean.getBeanClass().getName());
                     }
                     if (!producerTypes.contains(parameterType)) {
-                        throw newDefinitionException("No producer method or producer field declared by the bean class[name : %s]" +
-                                        " that is assignable to the disposed parameter[type : %s] of a disposer method[%s]!",
+                        throw newDefinitionException("No producer method or producer field declared by the bean class[name : {}]" +
+                                        " that is assignable to the disposed parameter[type : {}] of a disposer method[{}]!",
                                 managedBean.getBeanClass().getName(), parameterType.getTypeName(), method.getJavaMember());
                     }
                     definedDisposerMethodTypes.addAll(parameter.getTypeClosure());
@@ -112,7 +112,7 @@ public abstract class Disposers {
                 }
             }
             if (disposesParamCount > 1) {
-                throw newDefinitionException("The method[%s] has more than one parameter annotated @%s",
+                throw newDefinitionException("The method[{}] has more than one parameter annotated @{}",
                         method.getJavaMember(), Disposes.class);
             }
         });
@@ -122,7 +122,7 @@ public abstract class Disposers {
 
     private static void validateDisposerMethod(AnnotatedMethod disposerMethod) {
         if (disposerMethod.isAnnotationPresent(Produces.class)) {
-            throw newDefinitionException("The disposer method[%s] must not annotate @%s",
+            throw newDefinitionException("The disposer method[{}] must not annotate @{}",
                     disposerMethod.getJavaMember(), Produces.class.getName());
         }
         if (disposerMethod.isAnnotationPresent(Inject.class)) {
@@ -130,7 +130,7 @@ public abstract class Disposers {
             for (AnnotatedParameter parameter : parameters) {
                 for (Class<? extends Annotation> forbiddenAnnotationType : forbiddenParameterAnnotationTypes) {
                     if (parameter.isAnnotationPresent(forbiddenAnnotationType)) {
-                        throw newDefinitionException("The disposer method[%s] annotates @%s must not have a parameter annotated @%s",
+                        throw newDefinitionException("The disposer method[{}] annotates @{} must not have a parameter annotated @{}",
                                 disposerMethod.getJavaMember(), Inject.class.getName(), forbiddenAnnotationType.getName());
                     }
                 }

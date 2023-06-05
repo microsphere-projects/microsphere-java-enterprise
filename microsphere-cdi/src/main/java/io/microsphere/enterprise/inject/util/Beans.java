@@ -53,13 +53,30 @@ import static io.microsphere.reflect.FieldUtils.getAllFields;
 import static io.microsphere.reflect.MemberUtils.NON_PRIVATE_METHOD_PREDICATE;
 import static io.microsphere.reflect.MemberUtils.NON_STATIC_METHOD_PREDICATE;
 import static io.microsphere.reflect.MethodUtils.getAllDeclaredMethods;
-import static io.microsphere.reflect.TypeUtils.*;
+import static io.microsphere.reflect.TypeUtils.TYPE_VARIABLE_FILTER;
+import static io.microsphere.reflect.TypeUtils.asParameterizedType;
+import static io.microsphere.reflect.TypeUtils.asTypeVariable;
+import static io.microsphere.reflect.TypeUtils.asWildcardType;
+import static io.microsphere.reflect.TypeUtils.getAllTypes;
+import static io.microsphere.reflect.TypeUtils.getComponentType;
+import static io.microsphere.reflect.TypeUtils.isClass;
+import static io.microsphere.reflect.TypeUtils.isParameterizedType;
+import static io.microsphere.reflect.TypeUtils.isTypeVariable;
+import static io.microsphere.reflect.TypeUtils.isWildcardType;
 import static io.microsphere.util.AnnotationUtils.findAnnotation;
 import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
-import static io.microsphere.util.ClassUtils.*;
+import static io.microsphere.util.ClassUtils.arrayTypeEquals;
+import static io.microsphere.util.ClassUtils.isArray;
+import static io.microsphere.util.ClassUtils.isAssignableFrom;
+import static io.microsphere.util.ClassUtils.isConcreteClass;
+import static io.microsphere.util.ClassUtils.isFinal;
+import static io.microsphere.util.ClassUtils.isGenericClass;
+import static io.microsphere.util.ClassUtils.isPrimitive;
+import static io.microsphere.util.ClassUtils.isTopLevelClass;
+import static io.microsphere.util.ClassUtils.resolveWrapperType;
 import static java.beans.Introspector.decapitalize;
 import static java.lang.Integer.compare;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.stream.Stream.of;
 
 /**
@@ -292,18 +309,18 @@ public abstract class Beans {
     public static void validateManagedBeanType(Class<?> managedBeanClass) throws DefinitionException {
         InterceptorManager interceptorManager = getInstance(managedBeanClass.getClassLoader());
         if (interceptorManager.isInterceptorClass(managedBeanClass) && isDecorator(managedBeanClass)) {
-            throwDefinitionException("The managed bean [class : %s] must not annotate with both %s and %s",
+            throwDefinitionException("The managed bean [class : {}] must not annotate with both {} and {}",
                     managedBeanClass.getName(), Interceptor.class.getName(), Decorator.class.getName());
         }
 
         Set<Field> nonStaticPublicFields = getAllFields(managedBeanClass, MemberUtils::isNonStatic);
         if (!nonStaticPublicFields.isEmpty() && !isAnnotatedDependent(managedBeanClass)) {
-            throwDefinitionException("The managed bean [class : %s] has a non-static public field, it must have scope @%s!",
+            throwDefinitionException("The managed bean [class : {}] has a non-static public field, it must have scope @{}!",
                     managedBeanClass.getName(), Dependent.class.getName());
         }
 
         if (isGenericClass(managedBeanClass) && !isAnnotatedDependent(managedBeanClass)) {
-            throwDefinitionException("The managed bean [class : %s] is a generic type, it must have scope @%s!",
+            throwDefinitionException("The managed bean [class : {}] is a generic type, it must have scope @{}!",
                     managedBeanClass.getName(),
                     Dependent.class.getName());
         }
@@ -330,7 +347,7 @@ public abstract class Beans {
                 .filter(c -> c.getParameterCount() == 0 || c.isAnnotationPresent(Inject.class))
                 .findFirst()
                 .orElseThrow(() -> new DefinitionException(
-                        format("The bean class[%s] does not have a constructor with no parameters, " +
+                        format("The bean class[{}] does not have a constructor with no parameters, " +
                                         "or the class declares a constructor annotated @Inject",
                                 beanClass.getName())))
         );

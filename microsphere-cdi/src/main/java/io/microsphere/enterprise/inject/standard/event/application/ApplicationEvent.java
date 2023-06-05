@@ -21,7 +21,7 @@ import javax.enterprise.inject.spi.Extension;
 import java.util.EventObject;
 
 import static io.microsphere.enterprise.inject.standard.observer.ReflectiveObserverMethod.getBeanInstance;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * Container Event
@@ -49,8 +49,7 @@ public class ApplicationEvent extends EventObject {
         Object beanInstance = getBeanInstance();
         Class<?> callerClass = beanInstance.getClass();
         if (callerClass == null || !Extension.class.isAssignableFrom(callerClass)) {
-            String message = format("Any %s method must not called outside of the observer method invocation in the" +
-                            " %s implementation!",
+            String message = format("Any {} method must not called outside of the observer method invocation in the {} implementation!",
                     BeforeBeanDiscovery.class.getName(), Extension.class.getName());
             throw new IllegalStateException(message);
         }

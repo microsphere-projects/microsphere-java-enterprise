@@ -32,8 +32,7 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
-import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * {@link Interceptor} Bean Implementation
@@ -74,7 +73,7 @@ public class InterceptorBean<T> extends GenericBean<T> implements Interceptor<T>
         if (scope == null) {
             scope = Dependent.class;
         } else if (scope != null && !Dependent.class.equals(scope)) {
-            throw newDefinitionException("The scope of interceptor must be declared as @%s!", Dependent.class.getName());
+            throw newDefinitionException("The scope of interceptor must be declared as @{}!", Dependent.class.getName());
         }
         return scope;
     }
@@ -117,7 +116,7 @@ public class InterceptorBean<T> extends GenericBean<T> implements Interceptor<T>
     public Object intercept(InterceptionType type, T instance, InvocationContext ctx) throws Exception {
         if (!intercepts(type)) {
             throw new UnsupportedOperationException(format(
-                    "The interceptor[type:%s] does not support the interception type[%s]!",
+                    "The interceptor[type:{}] does not support the interception type[{}]!",
                     interceptorClass.getName(),
                     type.name()));
         }

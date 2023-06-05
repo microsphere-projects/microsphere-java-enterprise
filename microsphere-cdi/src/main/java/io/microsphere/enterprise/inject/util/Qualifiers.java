@@ -30,7 +30,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static io.microsphere.collection.SetUtils.asSet;
-import static io.microsphere.util.AnnotationUtils.*;
+import static io.microsphere.util.AnnotationUtils.filterAnnotations;
+import static io.microsphere.util.AnnotationUtils.getAllDeclaredAnnotations;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 
 /**
  * The utilities class for {@link Qualifier}

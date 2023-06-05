@@ -28,7 +28,7 @@ import javax.enterprise.inject.spi.ProcessBeanAttributes;
 import javax.enterprise.inject.spi.configurator.BeanAttributesConfigurator;
 import java.util.StringJoiner;
 
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -74,7 +74,7 @@ public class ProcessBeanAttributesEvent<T> implements ProcessBeanAttributes<T> {
         }
 
         throw new IllegalArgumentException(
-                format("The 'annotated' argument must be a instance of %s, or %s",
+                format("The 'annotated' argument must be a instance of {}, or {}",
                         AnnotatedType.class.getName(),
                         AnnotatedMember.class.getName()
                 ));

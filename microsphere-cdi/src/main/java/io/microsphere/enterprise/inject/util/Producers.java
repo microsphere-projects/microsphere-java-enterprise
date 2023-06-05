@@ -47,8 +47,13 @@ import java.util.Set;
 
 import static io.microsphere.enterprise.inject.util.Exceptions.newDefinitionException;
 import static io.microsphere.reflect.MemberUtils.isAbstract;
-import static io.microsphere.reflect.TypeUtils.*;
-import static java.lang.String.format;
+import static io.microsphere.reflect.TypeUtils.asGenericArrayType;
+import static io.microsphere.reflect.TypeUtils.asParameterizedType;
+import static io.microsphere.reflect.TypeUtils.asTypeVariable;
+import static io.microsphere.reflect.TypeUtils.asWildcardType;
+import static io.microsphere.reflect.TypeUtils.isTypeVariable;
+import static io.microsphere.reflect.TypeUtils.isWildcardType;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 
@@ -89,7 +94,7 @@ public abstract class Producers {
     static void validateProducerRequiredAnnotation(AnnotatedElement producer,
                                                    Class<? extends Annotation> annotationType) {
         if (!producer.isAnnotationPresent(annotationType)) {
-            String errorMessage = format("The Producer %s[%s] must annotate @%s",
+            String errorMessage = format("The Producer {}[{}] must annotate @{}",
                     producer.getClass().getSimpleName(),
                     producer,
                     annotationType.getName()
@@ -155,12 +160,12 @@ public abstract class Producers {
             for (Type typeArgument : typeArguments) {
                 if (isWildcardType(typeArgument)) {
                     throw newDefinitionException(
-                            "The producer method[%s] return type must not contain a wildcard type parameter[%s]!",
+                            "The producer method[{}] return type must not contain a wildcard type parameter[{}]!",
                             producerMethod, returnType);
                 } else if (isTypeVariable(typeArgument)) {
                     if (!producerMethod.isAnnotationPresent(Dependent.class)) {
-                        throw newDefinitionException("the producer method[%s] return type is a parameterized type[%s] " +
-                                        "with a type variable, it must have scope @%s!",
+                        throw newDefinitionException("the producer method[{}] return type is a parameterized type[{}] " +
+                                        "with a type variable, it must have scope @{}!",
                                 producerMethod, returnType, Dependent.class.getName());
                     }
                 }
@@ -170,7 +175,7 @@ public abstract class Producers {
 
     private static void validateTypeVariable(Method producerMethod, TypeVariable returnType) {
         if (returnType != null) {
-            throw newDefinitionException("The producer method[%s] return type must not be a type variable[%s]!",
+            throw newDefinitionException("The producer method[{}] return type must not be a type variable[{}]!",
                     producerMethod, returnType.getTypeName());
         }
     }
@@ -180,12 +185,12 @@ public abstract class Producers {
             Type genericComponentType = returnType.getGenericComponentType();
             if (isTypeVariable(genericComponentType)) {
                 throw newDefinitionException(
-                        "The producer method[%s] return type must not be an array type whose component type is a type variable[%s]!",
+                        "The producer method[{}] return type must not be an array type whose component type is a type variable[{}]!",
                         producerMethod, returnType);
             }
             if (isWildcardType(genericComponentType)) {
                 throw newDefinitionException(
-                        "The producer method[%s] return type must not contain an array type whose component type contains a wildcard type parameter[%s]!",
+                        "The producer method[{}] return type must not contain an array type whose component type contains a wildcard type parameter[{}]!",
                         producerMethod, returnType);
             }
         }
@@ -194,7 +199,7 @@ public abstract class Producers {
     private static void validateWildcardType(Method producerMethod, WildcardType returnType) {
         if (returnType != null) {
             throw newDefinitionException(
-                    "The producer method[%s] return type must not contain a wildcard type parameter[%s]!",
+                    "The producer method[{}] return type must not contain a wildcard type parameter[{}]!",
                     producerMethod, returnType);
         }
     }
@@ -220,8 +225,8 @@ public abstract class Producers {
                 superProducerMethod = superClass.getMethod(methodName, parameterTypes);
                 validateProducerMethodProduces(superProducerMethod);
             } catch (NoSuchMethodException e) {
-                String errorMessage = format("The override Producer Method[name : %s , param-types : %s] is not found " +
-                        "in the super class[%s]", methodName, asList(parameterTypes), superClass.getName());
+                String errorMessage = format("The override Producer Method[name : {} , param-types : {}] is not found " +
+                        "in the super class[{}]", methodName, asList(parameterTypes), superClass.getName());
                 throw new DefinitionException(errorMessage, e);
             }
         }
@@ -297,7 +302,7 @@ public abstract class Producers {
 
     private static void validateForbiddenAnnotation(Class<?> declaringType, Class<? extends Annotation> annotationType) throws DefinitionException {
         if (declaringType.isAnnotationPresent(annotationType)) {
-            String errorMessage = format("The Producer Methods' declaring type[type : %s] must not annotate @%s",
+            String errorMessage = format("The Producer Methods' declaring type[type : {}] must not annotate @{}",
                     declaringType.getName(),
                     annotationType.getName()
             );
@@ -309,7 +314,7 @@ public abstract class Producers {
                                                     int index,
                                                     Class<? extends Annotation> annotationType) throws DefinitionException {
         if (parameter.isAnnotationPresent(annotationType)) {
-            String errorMessage = format("The Producer Methods' parameter[type : %s , name : % , index : %d] must not annotate @%s",
+            String errorMessage = format("The Producer Methods' parameter[type : {} , name : % , index : %d] must not annotate @{}",
                     parameter.getParameterizedType(),
                     parameter.getName(),
                     index,

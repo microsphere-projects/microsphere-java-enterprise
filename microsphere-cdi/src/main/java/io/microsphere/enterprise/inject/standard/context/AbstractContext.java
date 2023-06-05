@@ -16,6 +16,7 @@
  */
 package io.microsphere.enterprise.inject.standard.context;
 
+import javax.enterprise.context.ContextNotActiveException;
 import javax.enterprise.context.spi.Context;
 import javax.enterprise.context.spi.Contextual;
 import javax.enterprise.context.spi.CreationalContext;
@@ -27,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static io.microsphere.enterprise.inject.util.Contexts.getBeanType;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * Abstract implementation {@link Context}
@@ -73,6 +75,7 @@ public abstract class AbstractContext implements Context {
      */
     @Override
     public <T> T get(Contextual<T> contextual, CreationalContext<T> creationalContext) {
+        assertActive("get");
         T instance = getInstance(contextual);
         if (instance == null) {
             if (creationalContext != null) {
@@ -103,6 +106,18 @@ public abstract class AbstractContext implements Context {
     @Override
     public <T> T get(Contextual<T> contextual) {
         return get(contextual, beanManager.createCreationalContext(contextual));
+    }
+
+    /**
+     * If the context object is inactive, the get() and destroy() methods must throw a ContextNotActiveException.
+     *
+     * @param operation
+     */
+    protected void assertActive(String operation) {
+        if (!active) {
+            throw new ContextNotActiveException(format("{} Context is inactive , the operation '{}' can't be executed",
+                    getClass().getName(), operation));
+        }
     }
 
     public final void inactive() {

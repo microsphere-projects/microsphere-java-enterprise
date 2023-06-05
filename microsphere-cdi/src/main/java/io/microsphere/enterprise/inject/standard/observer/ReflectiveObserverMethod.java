@@ -38,7 +38,7 @@ import static io.microsphere.enterprise.inject.util.Injections.createMethodParam
 import static io.microsphere.enterprise.inject.util.Qualifiers.getQualifiers;
 import static io.microsphere.lang.function.ThrowableAction.execute;
 import static io.microsphere.reflect.MemberUtils.isStatic;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * {@link ObserverMethod} based on Java Reflection.
@@ -166,7 +166,7 @@ public class ReflectiveObserverMethod<T> implements ObserverMethod<T> {
                     parameter.getParameter(), parameter.getIndex(), getMethod(), getBean());
             return beanManager.getInjectableReference(injectionPoint, null);
         }
-        String message = format("The observer method[%s] can't resolve the parameter[%s]",
+        String message = format("The observer method[{}] can't resolve the parameter[{}]",
                 method, parameter.getParameter());
         throw new DefinitionException(message);
     }

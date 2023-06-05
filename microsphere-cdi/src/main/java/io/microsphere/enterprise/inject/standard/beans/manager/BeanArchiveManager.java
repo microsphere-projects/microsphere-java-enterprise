@@ -68,14 +68,19 @@ import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.EX
 import static io.microsphere.enterprise.inject.standard.beans.BeanArchiveType.OTHER;
 import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.ALL;
 import static io.microsphere.enterprise.inject.standard.beans.BeanDiscoveryMode.NONE;
-import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.*;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.DISCOVERED;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.ENABLED;
+import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.SYNTHETIC;
 import static io.microsphere.enterprise.inject.standard.beans.xml.BeansReader.BEANS_XML_RESOURCE_NAME;
 import static io.microsphere.util.ServiceLoaderUtils.loadFirstService;
 import static io.microsphere.util.StringUtils.endsWith;
 import static io.microsphere.util.StringUtils.isBlank;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 import static java.lang.System.getProperty;
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
 
@@ -719,11 +724,11 @@ public class BeanArchiveManager {
         for (String className : classNames) {
             Class<?> type = loadClass(className);
             if (!type.isAnnotationPresent(annotationType)) {
-                String message = format("The class[%s] does not annotate @%s", type.getName(), annotationType.getName());
+                String message = format("The class[{}] does not annotate @{}", type.getName(), annotationType.getName());
                 throw new DeploymentException(message);
             }
             if (classes.contains(type)) {
-                String message = format("The duplicated definition @%s class[%s]!",
+                String message = format("The duplicated definition @{} class[{}]!",
                         annotationType.getName(), type.getName());
                 throw new DeploymentException(message);
             }
@@ -741,7 +746,7 @@ public class BeanArchiveManager {
             ClassLoader classLoader = getClassLoader();
             return ClassUtils.forName(className, classLoader);
         } catch (ClassNotFoundException e) {
-            String message = format("The class[name : %s] can't be found!", className);
+            String message = format("The class[name : {}] can't be found!", className);
             throw new DeploymentException(message, e);
         }
     }

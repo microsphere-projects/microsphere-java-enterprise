@@ -63,7 +63,7 @@ public class DecoratorBean<T> extends ManagedBean<T> implements Decorator<T> {
         if (scope == null) {
             scope = Dependent.class;
         } else if (scope != null && !Dependent.class.equals(scope)) {
-            throw newDefinitionException("The scope of decorator must be declared as @%s!", Dependent.class.getName());
+            throw newDefinitionException("The scope of decorator must be declared as @{}!", Dependent.class.getName());
         }
         return scope;
     }

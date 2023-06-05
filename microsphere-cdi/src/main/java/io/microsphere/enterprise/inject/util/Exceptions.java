@@ -18,7 +18,7 @@ package io.microsphere.enterprise.inject.util;
 
 import javax.enterprise.inject.spi.DefinitionException;
 
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * The utilities class for {@link Exception}

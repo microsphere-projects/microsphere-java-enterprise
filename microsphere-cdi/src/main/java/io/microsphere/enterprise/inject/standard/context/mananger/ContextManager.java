@@ -32,7 +32,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * {@link Context} Manager with {@link Scope @Scopes}
@@ -83,7 +83,7 @@ public class ContextManager {
     public void addContext(Context context) throws DeploymentException {
         Class<? extends Annotation> scope = context.getScope();
         if (contexts.containsKey(scope)) {
-            throw new DeploymentException(format("The context[scope : @%s] has been registered!", scope.getName()));
+            throw new DeploymentException(format("The context[scope : @{}] has been registered!", scope.getName()));
         }
         contexts.put(scope, context);
     }
@@ -100,7 +100,7 @@ public class ContextManager {
     public Context getContext(Class<? extends Annotation> scopeType) {
         Context context = contexts.get(scopeType);
         if (!context.isActive()) {
-            throw new ContextNotActiveException(format("The context[scope : @%s] is not active!", scopeType.getName()));
+            throw new ContextNotActiveException(format("The context[scope : @{}] is not active!", scopeType.getName()));
         }
         return context;
     }

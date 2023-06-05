@@ -126,7 +126,7 @@ import static io.microsphere.enterprise.inject.util.Parameters.isConstructorPara
 import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter;
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
 import static io.microsphere.util.ArrayUtils.iterate;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 import static java.lang.System.getProperty;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
@@ -230,7 +230,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
     public Object getReference(Bean<?> bean, Type beanType, CreationalContext<?> ctx) {
         assertAfterDeploymentValidation();
         if (!Objects.equals(beanType.getTypeName(), bean.getBeanClass().getTypeName())) {
-            throw new IllegalArgumentException(format("The given type[%s] is not a bean type[%s] of the given bean!",
+            throw new IllegalArgumentException(format("The given type[{}] is not a bean type[{}] of the given bean!",
                     beanType.getTypeName(),
                     bean.getBeanClass()));
         }
@@ -309,7 +309,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
     private void validateInjectionPointType(InjectionPoint injectionPoint) throws DefinitionException {
         Type type = injectionPoint.getType();
         if (type instanceof TypeVariable) {
-            throw newDefinitionException("A type variable[%s] is not a legal injection point[%s] type", type, injectionPoint);
+            throw newDefinitionException("A type variable[{}] is not a legal injection point[{}] type", type, injectionPoint);
         }
     }
 
@@ -490,7 +490,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
         } else if (type instanceof AnnotatedField) {
             return new ProducerFieldBeanAttributes<>((AnnotatedField) type);
         }
-        throw newDefinitionException("Current BeanManager can't support the specified AnnotatedMember[type:%s]", type);
+        throw newDefinitionException("Current BeanManager can't support the specified AnnotatedMember[type:{}]", type);
     }
 
     @Override

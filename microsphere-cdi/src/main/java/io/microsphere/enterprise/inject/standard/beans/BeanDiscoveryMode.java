@@ -19,7 +19,7 @@ package io.microsphere.enterprise.inject.standard.beans;
 import java.util.Objects;
 
 import static io.microsphere.util.StringUtils.isBlank;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * The Enumeration of "bean-discovery-mode" from "META-INF/beans.xml"
@@ -76,7 +76,7 @@ public enum BeanDiscoveryMode {
             }
         }
         if (result == null) {
-            String message = format("The 'value' argument[%s] can't resolved to an element of %s!",
+            String message = format("The 'value' argument[{}] can't resolved to an element of {}!",
                     value, BeanDiscoveryMode.class.getName());
             throw new IllegalArgumentException(message);
         }

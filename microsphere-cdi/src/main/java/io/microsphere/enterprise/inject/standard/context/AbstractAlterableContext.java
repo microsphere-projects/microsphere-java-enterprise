@@ -34,6 +34,7 @@ public abstract class AbstractAlterableContext extends AbstractContext implement
     }
 
     public void destroy(Contextual<?> contextual) {
+        assertActive("destroy");
         // TODO
     }
 }

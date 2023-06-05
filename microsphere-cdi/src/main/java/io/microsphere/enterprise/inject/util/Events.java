@@ -35,9 +35,11 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.*;
+import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.eventMetadataParameter;
+import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.injectedParameter;
+import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.observedParameter;
 import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
-import static java.lang.String.format;
+import static io.microsphere.text.FormatUtils.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
@@ -90,7 +92,7 @@ public abstract class Events {
                                                           Class<? extends Annotation>... forbiddenAnnotationTypes) throws DefinitionException {
         for (Class<? extends Annotation> forbiddenAnnotationType : forbiddenAnnotationTypes) {
             if (method.isAnnotationPresent(forbiddenAnnotationType)) {
-                String message = format("An observer method must not annotate %s!", forbiddenAnnotationType.getName());
+                String message = format("An observer method must not annotate {}!", forbiddenAnnotationType.getName());
                 throw new DefinitionException(message);
             }
         }
@@ -118,7 +120,7 @@ public abstract class Events {
             Parameter parameter = iterator.next();
 
             if (observedParameterCount > 1) {
-                String message = format("An observer method must not have more than one parameter annotated @%s or @%s",
+                String message = format("An observer method must not have more than one parameter annotated @{} or @{}",
                         Observes.class.getName(), ObservesAsync.class.getName());
                 throw new DefinitionException(message);
             } else if (isObservedParameter(parameter)) {
@@ -136,7 +138,7 @@ public abstract class Events {
             for (int i = 0; i < parameters.size(); i++) {
                 Parameter parameter = parameters.get(i);
                 if (parameter.isAnnotationPresent(Disposes.class)) {
-                    String message = format("An observer method must not annotate @%s!", Disposes.class.getName());
+                    String message = format("An observer method must not annotate @{}!", Disposes.class.getName());
                     throw new DefinitionException(message);
                 } else {
                     observerMethodParameters.add(injectedParameter(parameter, i));

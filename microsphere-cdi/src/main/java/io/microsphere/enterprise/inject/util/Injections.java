@@ -42,8 +42,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static java.lang.String.format;
-import static java.util.Collections.*;
+import static io.microsphere.text.FormatUtils.format;
+import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptySet;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.unmodifiableMap;
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * The utilities class for injection.
@@ -56,7 +60,7 @@ public abstract class Injections {
     public static void validateForbiddenAnnotation(Method initializerMethod,
                                                    Class<? extends Annotation> annotationType) {
         if (initializerMethod.isAnnotationPresent(annotationType)) {
-            String errorMessage = format("The Initializer Method[%s] must not annotate @%s!",
+            String errorMessage = format("The Initializer Method[{}] must not annotate @{}!",
                     initializerMethod,
                     annotationType.getName()
             );
@@ -68,7 +72,7 @@ public abstract class Injections {
                                                    Class<? extends Annotation> annotationType) {
         if (injectionPoint.getAnnotated().isAnnotationPresent(annotationType)) {
             Member member = injectionPoint.getMember();
-            String errorMessage = format("The @Inject %s[%s] must not annotate @%s!",
+            String errorMessage = format("The @Inject {}[{}] must not annotate @{}!",
                     member.getClass().getSimpleName(),
                     member,
                     annotationType.getName()
