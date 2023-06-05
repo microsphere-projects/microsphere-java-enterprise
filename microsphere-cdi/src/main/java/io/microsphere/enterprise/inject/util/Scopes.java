@@ -24,6 +24,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
 import static io.microsphere.util.AnnotationUtils.findAnnotation;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 
 /**
  * The utilities class for {@link Scope}
@@ -47,7 +48,7 @@ public abstract class Scopes {
     }
 
     public static boolean isScope(Class<? extends Annotation> annotationType) {
-        return AnnotationUtils.isAnnotationPresent(annotationType, Scope.class);
+        return isAnnotationPresent(annotationType, Scope.class);
     }
 
     public static boolean isNormalScope(Annotation annotation) {
@@ -55,7 +56,7 @@ public abstract class Scopes {
     }
 
     public static boolean isNormalScope(Class<? extends Annotation> annotationType) {
-        return AnnotationUtils.isAnnotationPresent(annotationType, NormalScope.class);
+        return isAnnotationPresent(annotationType, NormalScope.class);
     }
 
     public static boolean isPassivatingScope(Class<? extends Annotation> annotationType) {
