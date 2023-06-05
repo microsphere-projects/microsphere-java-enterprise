@@ -64,6 +64,7 @@ import static io.microsphere.reflect.TypeUtils.isClass;
 import static io.microsphere.reflect.TypeUtils.isParameterizedType;
 import static io.microsphere.reflect.TypeUtils.isTypeVariable;
 import static io.microsphere.reflect.TypeUtils.isWildcardType;
+import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.AnnotationUtils.findAnnotation;
 import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 import static io.microsphere.util.ClassUtils.arrayTypeEquals;
@@ -77,7 +78,6 @@ import static io.microsphere.util.ClassUtils.isTopLevelClass;
 import static io.microsphere.util.ClassUtils.resolveWrapperType;
 import static java.beans.Introspector.decapitalize;
 import static java.lang.Integer.compare;
-import static io.microsphere.text.FormatUtils.format;
 import static java.util.stream.Stream.of;
 
 /**
