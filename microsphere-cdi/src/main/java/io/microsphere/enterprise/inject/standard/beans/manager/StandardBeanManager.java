@@ -539,7 +539,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
     public Instance<Object> createInstance() {
         assertAfterBeanDiscovery();
         // TODO
-        return null;
+        return this;
     }
 
 
