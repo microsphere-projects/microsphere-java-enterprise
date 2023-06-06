@@ -125,6 +125,7 @@ import static io.microsphere.enterprise.inject.util.Injections.validateForbidden
 import static io.microsphere.enterprise.inject.util.Parameters.isConstructorParameter;
 import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter;
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
+import static io.microsphere.reflect.TypeUtils.isTypeVariable;
 import static io.microsphere.util.ArrayUtils.iterate;
 import static io.microsphere.text.FormatUtils.format;
 import static java.lang.System.getProperty;
@@ -308,7 +309,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
      */
     private void validateInjectionPointType(InjectionPoint injectionPoint) throws DefinitionException {
         Type type = injectionPoint.getType();
-        if (type instanceof TypeVariable) {
+        if (isTypeVariable(type)) {
             throw newDefinitionException("A type variable[{}] is not a legal injection point[{}] type", type, injectionPoint);
         }
     }
