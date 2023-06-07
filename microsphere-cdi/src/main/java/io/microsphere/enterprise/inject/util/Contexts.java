@@ -16,12 +16,14 @@
  */
 package io.microsphere.enterprise.inject.util;
 
+import javax.enterprise.context.ContextNotActiveException;
 import javax.enterprise.context.spi.Context;
 import javax.enterprise.context.spi.Contextual;
 import java.lang.reflect.Type;
 
 import static io.microsphere.reflect.TypeUtils.resolveActualTypeArgument;
 import static io.microsphere.reflect.TypeUtils.resolveActualTypeArgumentClass;
+import static io.microsphere.text.FormatUtils.format;
 
 /**
  * The utilities class for {@link Context}
@@ -39,6 +41,22 @@ public abstract class Contexts {
     public static <T> Type getBeanType(Contextual<T> contextual) {
         Class<?> contextualClass = contextual.getClass();
         return resolveActualTypeArgument(contextualClass, Contextual.class, 0);
+    }
+
+    public static boolean isActiveContext(Context context) {
+        return context != null && !context.isActive();
+    }
+
+    /**
+     * Validate the given {@Context context} is active or not.
+     *
+     * @param context {@link Context}
+     * @throws ContextNotActiveException If no active context object exists for the scope type, the container throws a {@llink ContextNotActiveException}.
+     */
+    public static void validateActiveContext(Context context) throws ContextNotActiveException {
+        if (!isActiveContext(context)) {
+            throw new ContextNotActiveException(format("No active context object exists for the scope type[@{}]!", context.getScope().getName()));
+        }
     }
 
 }
