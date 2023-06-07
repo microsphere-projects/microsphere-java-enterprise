@@ -96,6 +96,9 @@ public abstract class AbstractBean<A extends AnnotatedElement, T> extends Abstra
         try {
             doDestroy(instance, creationalContext);
         } catch (Throwable t) {
+            if (logger.isErrorEnabled()) {
+                logger.error("Failed to destroy the bean instance[{}] with context : {}", instance, creationalContext);
+            }
         }
     }
 
