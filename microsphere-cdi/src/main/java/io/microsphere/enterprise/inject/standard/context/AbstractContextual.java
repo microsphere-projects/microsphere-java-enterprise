@@ -16,6 +16,8 @@
  */
 package io.microsphere.enterprise.inject.standard.context;
 
+import io.microsphere.enterprise.inject.standard.beans.AbstractBean;
+
 import javax.enterprise.context.spi.Contextual;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.CreationException;
@@ -26,7 +28,9 @@ import javax.enterprise.inject.CreationException;
  * @param <T> type of the instance
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since 1.0.0
+ * @deprecated Use {@link AbstractBean}
  */
+@Deprecated
 public abstract class AbstractContextual<T> implements Contextual<T> {
 
     /**
