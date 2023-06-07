@@ -19,7 +19,6 @@ package io.microsphere.enterprise.inject.standard.context.mananger;
 import io.microsphere.enterprise.inject.standard.context.AbstractContext;
 import io.microsphere.enterprise.inject.util.Scopes;
 
-import javax.enterprise.context.ContextNotActiveException;
 import javax.enterprise.context.spi.Context;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeforeBeanDiscovery;
@@ -32,6 +31,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static io.microsphere.enterprise.inject.util.Contexts.isActiveContext;
+import static io.microsphere.enterprise.inject.util.Contexts.validateActiveContext;
 import static io.microsphere.text.FormatUtils.format;
 
 /**
@@ -82,11 +83,12 @@ public class ContextManager {
      */
     public void addContext(Context context) throws DeploymentException {
         Class<? extends Annotation> scope = context.getScope();
-        if (!context.isActive()) {
-            throw new ContextNotActiveException(format("The context[scope : @{}] is not active!", scope.getName()));
-        }
-        if (contexts.put(scope, context) != null) {
-            throw new DeploymentException(format("The context[scope : @{}] has been registered!", scope.getName()));
+        validateActiveContext(context);
+        Context oldContext = contexts.put(scope, context);
+        if (isActiveContext(oldContext)) {
+            // If more than one active context object exists for the given scope type, the container must throw an IllegalStateException.
+            throw new IllegalStateException(format("There are more than one active context object exists for the given scope type[@{}]",
+                    oldContext.getScope().getName()));
         }
     }
 
@@ -101,9 +103,8 @@ public class ContextManager {
 
     public Context getContext(Class<? extends Annotation> scopeType) {
         Context context = contexts.get(scopeType);
-        if (!context.isActive()) {
-            throw new ContextNotActiveException(format("The context[scope : @{}] is not active!", scopeType.getName()));
-        }
+        // If no active context object exists for the scope type, the container throws a ContextNotActiveException.
+        validateActiveContext(context);
         return context;
     }
 
