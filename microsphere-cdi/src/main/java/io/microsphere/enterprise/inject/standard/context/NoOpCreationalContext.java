@@ -27,6 +27,11 @@ import javax.enterprise.context.spi.CreationalContext;
  */
 public class NoOpCreationalContext<T> implements CreationalContext<T> {
 
+    public static final CreationalContext<?> INSTANCE = new NoOpCreationalContext<>();
+
+    public NoOpCreationalContext() {
+    }
+
     @Override
     public void push(T incompleteInstance) {
         // DO NOTHING
@@ -35,5 +40,9 @@ public class NoOpCreationalContext<T> implements CreationalContext<T> {
     @Override
     public void release() {
         // DO NOTHING
+    }
+
+    public static <T> CreationalContext<T> singleton() {
+        return (CreationalContext<T>) INSTANCE;
     }
 }
