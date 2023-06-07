@@ -83,14 +83,6 @@ public abstract class AbstractContext implements Context {
             }
         }
         return instance;
-//        Class<T> beanClass = getBeanClass(contextual);
-//        Type requiredBeanType = getBeanType(contextual);
-//        CreationalContext<T> context = creationalContext;
-//        if (context == null) {
-//            context = beanManager.createCreationalContext(contextual);
-//        }
-//        AnnotatedType<T> beanType = beanManager.createAnnotatedType(beanClass);
-//        return get(contextual, context, beanType);
     }
 
     private <T> T getInstance(Contextual<T> contextual) {
@@ -115,7 +107,7 @@ public abstract class AbstractContext implements Context {
      */
     protected void assertActive(String operation) {
         if (!active) {
-            throw new ContextNotActiveException(format("{} Context is inactive , the operation '{}' can't be executed",
+            throw new ContextNotActiveException(format("{} Context is inactive , the method '{}'() will not be invoked",
                     getClass().getName(), operation));
         }
     }
