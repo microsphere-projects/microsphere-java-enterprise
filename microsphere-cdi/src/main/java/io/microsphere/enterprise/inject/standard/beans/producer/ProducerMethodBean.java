@@ -62,14 +62,15 @@ public class ProducerMethodBean<T> extends AbstractBean<Method, T> implements Pr
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
+    protected T doCreate(CreationalContext<T> creationalContext) {
         // TODO
         return null;
     }
 
     @Override
-    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    protected void doDestroy(T instance, CreationalContext<T> creationalContext) {
         // TODO
+        creationalContext.release();
     }
 
     @Override

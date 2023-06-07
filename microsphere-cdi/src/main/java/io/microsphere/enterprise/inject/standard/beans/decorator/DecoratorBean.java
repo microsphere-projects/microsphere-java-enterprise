@@ -122,14 +122,14 @@ public class DecoratorBean<T> extends ManagedBean<T> implements Decorator<T> {
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
+    protected T doCreate(CreationalContext<T> creationalContext) {
         // TODO
         return super.create(creationalContext);
     }
 
     @Override
-    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    protected void doDestroy(T instance, CreationalContext<T> creationalContext) {
         // TODO
-        super.destroy(instance, creationalContext);
+        creationalContext.release();
     }
 }

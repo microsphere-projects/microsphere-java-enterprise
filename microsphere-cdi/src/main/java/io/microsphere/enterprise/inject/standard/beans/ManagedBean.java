@@ -84,14 +84,13 @@ public class ManagedBean<T> extends GenericBean<T> {
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
-        T instance = super.create(creationalContext);
+    protected T doCreate(CreationalContext<T> creationalContext) {
         // TODO
-        return instance;
+        return null;
     }
 
     @Override
-    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    protected void doDestroy(T instance, CreationalContext<T> creationalContext) {
         // TODO
         creationalContext.release();
     }

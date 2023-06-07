@@ -57,14 +57,15 @@ public class ProducerFieldBean<T> extends AbstractBean<Field, T> implements Prod
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
+    protected T doCreate(CreationalContext<T> creationalContext) {
         // TODO
         return null;
     }
 
     @Override
-    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    protected void doDestroy(T instance, CreationalContext<T> creationalContext) {
         // TODO
+        creationalContext.release();
     }
 
     @Override

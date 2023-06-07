@@ -108,7 +108,7 @@ public class GenericBean<T> extends AbstractBean<Class<T>, T> implements Bean<T>
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
+    protected T doCreate(CreationalContext<T> creationalContext) {
         T instance = null;
 
         Map<AnnotatedConstructor, List<ConstructorParameterInjectionPoint>> injectionPointsMap =
@@ -142,7 +142,8 @@ public class GenericBean<T> extends AbstractBean<Class<T>, T> implements Bean<T>
     }
 
     @Override
-    public void destroy(T instance, CreationalContext<T> creationalContext) {
+    protected void doDestroy(T instance, CreationalContext<T> creationalContext) {
+        // TODO
         creationalContext.release();
     }
 
