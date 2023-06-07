@@ -82,16 +82,18 @@ public class ContextManager {
      */
     public void addContext(Context context) throws DeploymentException {
         Class<? extends Annotation> scope = context.getScope();
-        if (contexts.containsKey(scope)) {
+        if (!context.isActive()) {
+            throw new ContextNotActiveException(format("The context[scope : @{}] is not active!", scope.getName()));
+        }
+        if (contexts.put(scope, context) != null) {
             throw new DeploymentException(format("The context[scope : @{}] has been registered!", scope.getName()));
         }
-        contexts.put(scope, context);
     }
 
     public void addBean(Bean<?> bean) {
         Class<? extends Annotation> scope = bean.getScope();
         Context context = getContext(scope);
-        if(context instanceof AbstractContext){
+        if (context instanceof AbstractContext) {
             AbstractContext abstractContext = (AbstractContext) context;
             abstractContext.addBean(bean);
         }
