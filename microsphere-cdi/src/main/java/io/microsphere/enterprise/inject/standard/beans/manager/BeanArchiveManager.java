@@ -29,6 +29,7 @@ import io.microsphere.enterprise.inject.util.Stereotypes;
 import io.microsphere.enterprise.interceptor.InterceptorManager;
 import io.microsphere.enterprise.interceptor.util.InterceptorUtils;
 import io.microsphere.io.scanner.SimpleClassScanner;
+import io.microsphere.util.ClassLoaderUtils;
 import io.microsphere.util.ClassPathUtils;
 import io.microsphere.util.ClassUtils;
 import io.microsphere.util.PriorityComparator;
@@ -738,14 +739,14 @@ public class BeanArchiveManager {
     }
 
     private Class<?> resolveClass(String className) {
-        return ClassUtils.resolveClass(className, getClassLoader());
+        return ClassLoaderUtils.resolveClass(className, getClassLoader());
     }
 
     private Class<?> loadClass(String className) throws IllegalArgumentException {
         try {
             ClassLoader classLoader = getClassLoader();
-            return ClassUtils.forName(className, classLoader);
-        } catch (ClassNotFoundException e) {
+            return ClassLoaderUtils.loadClass(className, classLoader);
+        } catch (RuntimeException e) {
             String message = format("The class[name : {}] can't be found!", className);
             throw new DeploymentException(message, e);
         }
