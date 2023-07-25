@@ -14,7 +14,7 @@
     <artifactId>microsphere-cdi</artifactId>
     <packaging>jar</packaging>
 
-    <name>Microsphere Projects :: Java EE CDI</name>
+    <name>Microsphere Projects :: Java EE :: CDI</name>
     <description>Microsphere Java EE CDI Project</description>
 
     <dependencies>
