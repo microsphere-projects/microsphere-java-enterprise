@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static io.microsphere.collection.SetUtils.asSet;
-import static io.microsphere.collection.SetUtils.of;
 
 /**
  * The composite {@link InterceptorBindingInfo} instance

@@ -16,7 +16,6 @@
  */
 package io.microsphere.enterprise.interceptor;
 
-import io.microsphere.enterprise.interceptor.util.InterceptorUtils;
 import io.microsphere.lang.Prioritized;
 
 import javax.annotation.PostConstruct;
