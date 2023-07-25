@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.microsphere-projects</groupId>
-    <artifactId>microsphere-cache</artifactId>
+    <artifactId>microsphere-jcache</artifactId>
     <packaging>jar</packaging>
 
     <name>Microsphere Projects :: Java EE :: Cache</name>
