@@ -18,6 +18,14 @@
     <description>Microsphere Java EE Servlet Project</description>
 
     <dependencies>
+
+        <!-- Microsphere Core -->
+        <dependency>
+            <groupId>io.github.microsphere-projects</groupId>
+            <artifactId>microsphere-core</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Java Common Annotations -->
         <dependency>
             <groupId>javax.annotation</groupId>
