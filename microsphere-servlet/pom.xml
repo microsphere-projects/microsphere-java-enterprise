@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.github.microsphere-projects</groupId>
+        <artifactId>microsphere-java-enterprise-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../microsphere-java-enterprise-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.microsphere-projects</groupId>
+    <artifactId>microsphere-servlet</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Microsphere Projects :: Java EE :: Servlet</name>
+    <description>Microsphere Java EE Servlet Project</description>
+
+</project>

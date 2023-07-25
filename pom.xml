@@ -47,6 +47,7 @@
         <module>microsphere-interceptor</module>
         <module>microsphere-cache</module>
         <module>microsphere-cdi</module>
+        <module>microsphere-servlet</module>
     </modules>
 
 </project>
