@@ -17,4 +17,53 @@
     <name>Microsphere Projects :: Java EE :: Servlet</name>
     <description>Microsphere Java EE Servlet Project</description>
 
+    <dependencies>
+        <!-- Java Common Annotations -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>servlet-2.3</id>
+        </profile>
+
+        <profile>
+            <id>servlet-2.4</id>
+        </profile>
+
+        <profile>
+            <id>servlet-2.5</id>
+        </profile>
+
+        <profile>
+            <id>servlet-3.0</id>
+        </profile>
+
+        <profile>
+            <id>servlet-3.1</id>
+            <properties>
+                <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>servlet-4.0</id>
+            <properties>
+                <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+            </properties>
+        </profile>
+
+    </profiles>
+
 </project>
