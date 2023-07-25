@@ -32,15 +32,4 @@ import static io.microsphere.util.Version.of;
  */
 public abstract class ServletContextUtils extends BaseUtils {
 
-    /**
-     * Get the {@link Version version} of Current {@link ServletContext} in runtime
-     *
-     * @param servletContext {@link ServletContext}
-     * @return non-null
-     */
-    public static Version getServletVersion(ServletContext servletContext) {
-        int majorVersion = servletContext.getMajorVersion();
-        int minorVersion = servletContext.getMinorVersion();
-        return of(majorVersion, minorVersion);
-    }
 }
