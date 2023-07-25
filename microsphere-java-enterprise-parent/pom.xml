@@ -20,7 +20,7 @@
 
     <properties>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
-        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <javax.inject.version>1</javax.inject.version>
         <javax.cache-api.version>1.1.1</javax.cache-api.version>
         <javax.interceptor-api.version>1.2</javax.interceptor-api.version>
