@@ -73,10 +73,10 @@ import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.DIS
 import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.ENABLED;
 import static io.microsphere.enterprise.inject.standard.beans.BeanTypeSource.SYNTHETIC;
 import static io.microsphere.enterprise.inject.standard.beans.xml.BeansReader.BEANS_XML_RESOURCE_NAME;
+import static io.microsphere.text.FormatUtils.format;
 import static io.microsphere.util.ServiceLoaderUtils.loadFirstService;
 import static io.microsphere.util.StringUtils.endsWith;
 import static io.microsphere.util.StringUtils.isBlank;
-import static io.microsphere.text.FormatUtils.format;
 import static java.lang.System.getProperty;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;

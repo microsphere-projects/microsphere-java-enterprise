@@ -102,7 +102,6 @@ import javax.enterprise.util.TypeLiteral;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -126,8 +125,8 @@ import static io.microsphere.enterprise.inject.util.Parameters.isConstructorPara
 import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter;
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
 import static io.microsphere.reflect.TypeUtils.isTypeVariable;
-import static io.microsphere.util.ArrayUtils.iterate;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.ArrayUtils.iterate;
 import static java.lang.System.getProperty;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;

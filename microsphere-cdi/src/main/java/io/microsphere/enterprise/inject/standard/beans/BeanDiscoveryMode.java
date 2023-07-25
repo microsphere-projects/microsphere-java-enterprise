@@ -18,8 +18,8 @@ package io.microsphere.enterprise.inject.standard.beans;
 
 import java.util.Objects;
 
-import static io.microsphere.util.StringUtils.isBlank;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.StringUtils.isBlank;
 
 /**
  * The Enumeration of "bean-discovery-mode" from "META-INF/beans.xml"

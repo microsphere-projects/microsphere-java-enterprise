@@ -16,8 +16,6 @@
  */
 package io.microsphere.enterprise.inject.util;
 
-import io.microsphere.util.AnnotationUtils;
-
 import javax.enterprise.context.NormalScope;
 import javax.inject.Scope;
 import java.lang.annotation.Annotation;

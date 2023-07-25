@@ -38,8 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.eventMetadataParameter;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.injectedParameter;
 import static io.microsphere.enterprise.inject.standard.observer.ObserverMethodParameter.observedParameter;
-import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 import static io.microsphere.text.FormatUtils.format;
+import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
