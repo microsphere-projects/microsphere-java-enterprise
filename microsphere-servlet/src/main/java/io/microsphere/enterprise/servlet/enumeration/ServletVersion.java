@@ -35,6 +35,11 @@ import static io.microsphere.util.Version.of;
 public enum ServletVersion {
 
     /**
+     * Servlet 2.2 (Legacy)
+     */
+    SERVLET_2_2(2, 2),
+
+    /**
      * Servlet 2.3 mainly supports Servlet's Listeners
      *
      * @see javax.servlet.ServletContextListener
@@ -91,9 +96,17 @@ public enum ServletVersion {
         return version.getMinor();
     }
 
+    public boolean gt(ServletContext servletContext) {
+        return isGreaterThan(servletContext);
+    }
+
     public boolean isGreaterThan(ServletContext servletContext) {
         Version that = getVersion(servletContext);
         return version.isGreaterThan(that);
+    }
+
+    public boolean ge(ServletContext servletContext) {
+        return isGreaterOrEqual(servletContext);
     }
 
     public boolean isGreaterOrEqual(ServletContext servletContext) {
@@ -101,9 +114,17 @@ public enum ServletVersion {
         return version.isGreaterOrEqual(that);
     }
 
+    public boolean lt(ServletContext servletContext) {
+        return isLessThan(servletContext);
+    }
+
     public boolean isLessThan(ServletContext servletContext) {
         Version that = getVersion(servletContext);
         return version.isLessThan(that);
+    }
+
+    public boolean le(ServletContext servletContext) {
+        return isLessOrEqual(servletContext);
     }
 
     public boolean isLessOrEqual(ServletContext servletContext) {
@@ -111,7 +132,12 @@ public enum ServletVersion {
         return version.isLessOrEqual(that);
     }
 
-    public boolean equals(Version that) {
+    public boolean eq(ServletContext servletContext) {
+        return equals(servletContext);
+    }
+
+    public boolean equals(ServletContext servletContext) {
+        Version that = getVersion(servletContext);
         return version.equals(that);
     }
 
