@@ -91,19 +91,23 @@ public enum ServletVersion {
         return version.getMinor();
     }
 
-    public boolean isGreaterThan(Version that) {
+    public boolean isGreaterThan(ServletContext servletContext) {
+        Version that = getVersion(servletContext);
         return version.isGreaterThan(that);
     }
 
-    public boolean isGreaterOrEqual(Version that) {
+    public boolean isGreaterOrEqual(ServletContext servletContext) {
+        Version that = getVersion(servletContext);
         return version.isGreaterOrEqual(that);
     }
 
-    public boolean isLessThan(Version that) {
+    public boolean isLessThan(ServletContext servletContext) {
+        Version that = getVersion(servletContext);
         return version.isLessThan(that);
     }
 
-    public boolean isLessOrEqual(Version that) {
+    public boolean isLessOrEqual(ServletContext servletContext) {
+        Version that = getVersion(servletContext);
         return version.isLessOrEqual(that);
     }
 
@@ -111,6 +115,17 @@ public enum ServletVersion {
         return version.equals(that);
     }
 
+    /**
+     * Get the {@link Version Servlet version} of Current {@link ServletContext} in runtime
+     *
+     * @param servletContext {@link ServletContext}
+     * @return non-null
+     */
+    public static Version getVersion(ServletContext servletContext) {
+        int majorVersion = servletContext.getMajorVersion();
+        int minorVersion = servletContext.getMinorVersion();
+        return of(majorVersion, minorVersion);
+    }
 
     /**
      * Get the {@link ServletVersion Servlet version} of Current {@link ServletContext} in runtime
@@ -118,7 +133,7 @@ public enum ServletVersion {
      * @param servletContext {@link ServletContext}
      * @return non-null
      */
-    public static ServletVersion get(ServletContext servletContext) {
+    public static ServletVersion valueOf(ServletContext servletContext) {
         int majorVersion = servletContext.getMajorVersion();
         int minorVersion = servletContext.getMinorVersion();
         ServletVersion version = null;
@@ -127,6 +142,9 @@ public enum ServletVersion {
                 version = servletVersion;
                 break;
             }
+        }
+        if (version == null) {
+            throw new IllegalArgumentException("No ServletVersion enum for Servlet " + majorVersion + "." + minorVersion);
         }
         return version;
     }
