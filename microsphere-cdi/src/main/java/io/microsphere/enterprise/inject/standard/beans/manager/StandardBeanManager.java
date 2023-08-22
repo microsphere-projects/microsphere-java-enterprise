@@ -51,6 +51,7 @@ import io.microsphere.enterprise.inject.standard.producer.ProducerMethodBeanAttr
 import io.microsphere.enterprise.inject.standard.producer.ProducerMethodFactory;
 import io.microsphere.enterprise.inject.util.Annotations;
 import io.microsphere.enterprise.interceptor.InterceptorManager;
+import io.microsphere.util.ArrayUtils;
 import io.microsphere.util.ClassLoaderUtils;
 
 import javax.el.ELResolver;
@@ -126,7 +127,7 @@ import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
 import static io.microsphere.reflect.TypeUtils.isTypeVariable;
 import static io.microsphere.text.FormatUtils.format;
-import static io.microsphere.util.ArrayUtils.iterate;
+import static io.microsphere.util.ArrayUtils.forEach;
 import static java.lang.System.getProperty;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
@@ -1217,7 +1218,7 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
     }
 
     public StandardBeanManager extensions(Extension... extensions) {
-        iterate(extensions, this::addExtension);
+        ArrayUtils.forEach(extensions, this::addExtension);
         return this;
     }
 
@@ -1227,22 +1228,22 @@ public class StandardBeanManager implements BeanManager, Instance<Object> {
     }
 
     public StandardBeanManager syntheticInterceptors(Class<?>... interceptorClasses) {
-        iterate(interceptorClasses, beanArchiveManager::addSyntheticInterceptorClass);
+        ArrayUtils.forEach(interceptorClasses, beanArchiveManager::addSyntheticInterceptorClass);
         return this;
     }
 
     public StandardBeanManager syntheticDecorators(Class<?>... decoratorClasses) {
-        iterate(decoratorClasses, beanArchiveManager::addSyntheticDecoratorClass);
+        ArrayUtils.forEach(decoratorClasses, beanArchiveManager::addSyntheticDecoratorClass);
         return this;
     }
 
     public StandardBeanManager syntheticAlternatives(Class<?>... alternativeClasses) {
-        iterate(alternativeClasses, beanArchiveManager::addSyntheticAlternativeClass);
+        ArrayUtils.forEach(alternativeClasses, beanArchiveManager::addSyntheticAlternativeClass);
         return this;
     }
 
     public StandardBeanManager alternativeStereotypeClasses(Class<? extends Annotation>... alternativeStereotypeClasses) {
-        iterate(alternativeStereotypeClasses, beanArchiveManager::addAlternativeStereotypeClass);
+        ArrayUtils.forEach(alternativeStereotypeClasses, beanArchiveManager::addAlternativeStereotypeClass);
         return this;
     }
 
