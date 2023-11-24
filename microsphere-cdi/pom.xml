@@ -38,6 +38,12 @@
             <artifactId>cdi-api</artifactId>
         </dependency>
 
+        <!-- Java XML -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+
         <!-- Microsphere Core -->
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>

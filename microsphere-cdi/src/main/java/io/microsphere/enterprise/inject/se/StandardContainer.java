@@ -18,6 +18,7 @@ package io.microsphere.enterprise.inject.se;
 
 import io.microsphere.enterprise.inject.standard.beans.manager.BeanArchiveManager;
 import io.microsphere.enterprise.inject.standard.beans.manager.StandardBeanManager;
+import io.microsphere.util.ArrayUtils;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.se.SeContainer;
@@ -29,7 +30,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static io.microsphere.util.ArrayUtils.iterate;
+import static io.microsphere.util.ArrayUtils.forEach;
 
 
 /**
@@ -56,11 +57,11 @@ public class StandardContainer implements SeContainer {
     }
 
     void addBeanClasses(Class<?>... beanClasses) {
-        iterate(beanClasses, beanArchiveManager::addSyntheticBeanClass);
+        ArrayUtils.forEach(beanClasses, beanArchiveManager::addSyntheticBeanClass);
     }
 
     void addPackages(boolean scanRecursively, Package... packages) {
-        iterate(packages, packageToScan -> beanArchiveManager.addSyntheticPackage(packageToScan, scanRecursively));
+        ArrayUtils.forEach(packages, packageToScan -> beanArchiveManager.addSyntheticPackage(packageToScan, scanRecursively));
     }
 
     void addExtensions(Extension... extensions) {
