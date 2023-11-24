@@ -14,7 +14,7 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
 
-    <name>Microsphere Projects :: Java EE</name>
+    <name>Microsphere :: Java EE</name>
     <description>Microsphere Projects for Java Enterprise</description>
 
     <scm>

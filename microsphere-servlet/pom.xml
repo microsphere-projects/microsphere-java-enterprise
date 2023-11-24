@@ -14,7 +14,7 @@
     <artifactId>microsphere-servlet</artifactId>
     <packaging>jar</packaging>
 
-    <name>Microsphere Projects :: Java EE :: Servlet</name>
+    <name>Microsphere :: Java EE :: Servlet</name>
     <description>Microsphere Java EE Servlet Project</description>
 
     <dependencies>

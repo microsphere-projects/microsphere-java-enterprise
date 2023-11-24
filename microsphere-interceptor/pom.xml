@@ -14,7 +14,7 @@
     <artifactId>microsphere-interceptor</artifactId>
     <packaging>jar</packaging>
 
-    <name>Microsphere Projects :: Java EE :: Interceptor</name>
+    <name>Microsphere :: Java EE :: Interceptor</name>
     <description>Microsphere Java EE Interceptor Project</description>
 
     <dependencies>
