@@ -30,8 +30,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static io.microsphere.util.ArrayUtils.forEach;
-
 
 /**
  * Standard {@link SeContainer} implementation

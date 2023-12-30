@@ -17,11 +17,8 @@
 package io.microsphere.enterprise.servlet.util;
 
 import io.microsphere.util.BaseUtils;
-import io.microsphere.util.Version;
 
 import javax.servlet.ServletContext;
-
-import static io.microsphere.util.Version.of;
 
 /**
  * The utilities class for {@link ServletContext}

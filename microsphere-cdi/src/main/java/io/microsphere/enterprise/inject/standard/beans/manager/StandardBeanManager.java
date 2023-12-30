@@ -127,7 +127,6 @@ import static io.microsphere.enterprise.inject.util.Parameters.isMethodParameter
 import static io.microsphere.enterprise.interceptor.InterceptorManager.getInstance;
 import static io.microsphere.reflect.TypeUtils.isTypeVariable;
 import static io.microsphere.text.FormatUtils.format;
-import static io.microsphere.util.ArrayUtils.forEach;
 import static java.lang.System.getProperty;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
