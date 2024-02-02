@@ -167,6 +167,21 @@
                 </exclusions>
             </dependency>
 
+
+            <!-- Lettuce -->
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce.version}</version>
+            </dependency>
+
+            <!-- Jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+
             <!-- Testing Dependencies -->
             <!-- JUnit -->
             <dependency>
