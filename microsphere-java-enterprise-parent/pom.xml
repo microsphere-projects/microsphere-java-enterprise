@@ -167,7 +167,6 @@
                 </exclusions>
             </dependency>
 
-
             <!-- Lettuce -->
             <dependency>
                 <groupId>io.lettuce</groupId>
@@ -175,7 +174,7 @@
                 <version>${lettuce.version}</version>
             </dependency>
 
-            <!-- Jedis -->
+            <!-- jedis -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
