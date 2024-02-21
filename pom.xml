@@ -48,6 +48,7 @@
         <module>microsphere-jcache</module>
         <module>microsphere-cdi</module>
         <module>microsphere-servlet</module>
+        <module>microsphere-bean-validation</module>
     </modules>
 
     <distributionManagement>

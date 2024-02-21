@@ -70,11 +70,7 @@ public class CacheAnnotationUtils {
         String cacheName = getCacheName(cacheAnnotation);
 
         if ("".equals(cacheName)) { // default value or annotation is absent
-            Class<?> declaringClass = cachedMethod.getDeclaringClass();
-            CacheDefaults cacheDefaults = declaringClass.getAnnotation(CacheDefaults.class);
-            if (cacheDefaults == null && target != null) {
-                cacheDefaults = target.getClass().getAnnotation(CacheDefaults.class);
-            }
+            CacheDefaults cacheDefaults = findCacheDefaults(cachedMethod, target);
             if (cacheDefaults != null) {
                 cacheName = cacheDefaults.cacheName();
             }
@@ -82,10 +78,6 @@ public class CacheAnnotationUtils {
 
         if ("".equals(cacheName)) {
             cacheName = buildDefaultCacheName(cachedMethod);
-        }
-
-        if (cacheName != null) {
-
         }
 
         return cacheName;
