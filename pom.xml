@@ -17,6 +17,11 @@
     <name>Microsphere :: Java EE</name>
     <description>Microsphere Projects for Java Enterprise</description>
 
+    <organization>
+        <name>Microsphere</name>
+        <url>https://github.com/microsphere-projects</url>
+    </organization>
+    
     <scm>
         <url>https://github.com/microsphere-projects/microsphere-java-enterprise</url>
         <connection>scm:git:git://github.com/microsphere-projects/microsphere-java-enterprise.git</connection>
