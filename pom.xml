@@ -21,13 +21,14 @@
         <name>Microsphere</name>
         <url>https://github.com/microsphere-projects</url>
     </organization>
-    
-    <scm>
-        <url>https://github.com/microsphere-projects/microsphere-java-enterprise</url>
-        <connection>scm:git:git://github.com/microsphere-projects/microsphere-java-enterprise.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/microsphere-projects/microsphere-java-enterprise.git
-        </developerConnection>
-    </scm>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
@@ -43,6 +44,13 @@
         </developer>
     </developers>
 
+    <scm>
+        <url>https://github.com/microsphere-projects/microsphere-java-enterprise</url>
+        <connection>scm:git:git://github.com/microsphere-projects/microsphere-java-enterprise.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/microsphere-projects/microsphere-java-enterprise.git
+        </developerConnection>
+    </scm>
+    
     <properties>
         <revision>0.0.1-SNAPSHOT</revision>
     </properties>
