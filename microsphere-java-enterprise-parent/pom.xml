@@ -31,7 +31,7 @@
         <javax.xml.version>2.3.1</javax.xml.version>
 
         <!-- Internal Projects -->
-        <microsphere.version>${revision}</microsphere.version>
+        <microsphere.version>0.0.1</microsphere.version>
 
         <!-- Third Parties -->
         <spring-framework.version>5.3.27</spring-framework.version>
