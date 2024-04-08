@@ -27,7 +27,6 @@
         <dependency>
             <groupId>io.github.microsphere-projects</groupId>
             <artifactId>microsphere-core</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <!-- Java Common Annotations -->
