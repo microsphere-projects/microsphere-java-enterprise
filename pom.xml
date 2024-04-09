@@ -57,11 +57,12 @@
 
     <modules>
         <module>microsphere-java-enterprise-parent</module>
+        <module>microsphere-java-enterprise-dependencies</module>
+        <module>microsphere-bean-validation</module>
+        <module>microsphere-cdi</module>
         <module>microsphere-interceptor</module>
         <module>microsphere-jcache</module>
-        <module>microsphere-cdi</module>
         <module>microsphere-servlet</module>
-        <module>microsphere-bean-validation</module>
     </modules>
 
     <distributionManagement>
