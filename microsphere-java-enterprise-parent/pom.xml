@@ -30,8 +30,8 @@
         <javax.mail.version>1.4.7</javax.mail.version>
         <javax.xml.version>2.3.1</javax.xml.version>
 
-        <!-- Internal Projects -->
-        <microsphere.version>0.0.1</microsphere.version>
+        <!-- Internal -->
+        <microsphere-java.version>0.0.4</microsphere-java.version>
 
         <!-- Third Parties -->
         <spring-framework.version>5.3.27</spring-framework.version>
@@ -56,7 +56,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Framewor Dependencies -->
+            <!-- Spring Framework Dependencies -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
@@ -65,11 +65,11 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Microsphere Dependencies -->
+            <!-- Microsphere Java Dependencies -->
             <dependency>
                 <groupId>io.github.microsphere-projects</groupId>
-                <artifactId>microsphere-dependencies</artifactId>
-                <version>${microsphere.version}</version>
+                <artifactId>microsphere-java-dependencies</artifactId>
+                <version>${microsphere-java.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
