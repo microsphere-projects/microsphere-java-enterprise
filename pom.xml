@@ -45,10 +45,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/microsphere-projects/microsphere-java-enterprise</url>
-        <connection>scm:git:git://github.com/microsphere-projects/microsphere-java-enterprise.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/microsphere-projects/microsphere-java-enterprise.git
-        </developerConnection>
+        <url>git@github.com/microsphere-projects/microsphere-java-enterprise.git</url>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:ssh://${project.scm.url}</developerConnection>
     </scm>
 
     <properties>
@@ -88,5 +87,5 @@
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
-    
+
 </project>
