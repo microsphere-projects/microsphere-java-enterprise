@@ -29,7 +29,7 @@ import static java.util.Objects.requireNonNull;
  * @see CacheMXBean
  * @see CompleteConfiguration
  * @since 1.0.0
- * Date : 2021-04-13
+ * 
  */
 class CacheMXBeanAdapter implements CacheMXBean {
 
