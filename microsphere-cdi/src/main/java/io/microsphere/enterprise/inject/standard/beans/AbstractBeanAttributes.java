@@ -18,7 +18,6 @@ package io.microsphere.enterprise.inject.standard.beans;
 
 import io.microsphere.enterprise.inject.util.Qualifiers;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.spi.Annotated;
@@ -35,6 +34,7 @@ import static io.microsphere.enterprise.inject.util.Scopes.getScopeType;
 import static io.microsphere.enterprise.inject.util.Stereotypes.getStereotypeTypes;
 import static io.microsphere.util.AnnotationUtils.isAnnotationPresent;
 import static java.util.Objects.requireNonNull;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Abstract {@link BeanAttributes} implementation
@@ -46,7 +46,7 @@ import static java.util.Objects.requireNonNull;
  */
 public abstract class AbstractBeanAttributes<A extends AnnotatedElement, T> implements BeanAttributes<T> {
 
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = getLogger(this.getClass());
 
     private final A annotatedElement;
 
