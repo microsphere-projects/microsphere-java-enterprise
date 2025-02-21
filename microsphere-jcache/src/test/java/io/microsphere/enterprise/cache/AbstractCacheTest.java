@@ -58,7 +58,7 @@ import static org.junit.Assert.assertTrue;
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @see Cache
  * @since 1.0.0
- * Date : 2021-04-12
+ * 
  */
 public class AbstractCacheTest {
 
